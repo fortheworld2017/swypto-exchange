@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  .main-content(role='main')
+    .wrapper
+      .one-col.content
+        h1.page-title Fees
+
+        h2 Trading
+        .fees.container
+          table.trade-data
+            tr
+              th Buying
+              td <s>0.2%</s> <b>FREE</b>
+            tr
+              th Selling
+              td <s>0.2%</s> <b>FREE</b>
+
+        h2 Deposit
+        .fees.container
+          table.trade-data
+            tr
+              th Coins
+              td FREE
+
+
+        h2 Withdraw
+        p Withdrawals are free. We do add a transaction fee to ensure swift processing by the network.
+        .fees.container
+          table.trade-data
+            - each currencyLabel in MarketHelper.getSortedCurrencyTypes()
+              tr
+                th #{currencyLabel}
+                td #{MarketHelper.fromBigint(MarketHelper.getWithdrawalFee(currencyLabel))}
+        p All fees are subject to change. Any fee change will be announced in writing prior to going live.
+          

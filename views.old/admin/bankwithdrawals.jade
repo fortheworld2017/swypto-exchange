@@ -1,0 +1,52 @@
+extends ../admin
+
+block content
+  .content
+    h2.content-title Bank Withdrawals
+    // Total Withdrawals
+    ul#transactions-stats.stats
+      li
+        | Total Withdrawals: #{totalWithdrawals}
+    //Pagination controls
+    p
+      - if (from - count >= 0)
+        a(href="/administratie/bank-withdrawals?from=#{from - count}&user_id=#{userId ? userId : ''}") Prev
+        |  | 
+      a(href="/administratie/bank-withdrawals?from=#{from + count}&user_id=#{userId ? userId : ''}") Next
+    //Withdrawal Table
+    table#withdrawals.table
+      thead
+        tr
+          th Date
+          th User- Email
+          th Beneficiary/Company Name
+          th IBAN
+          th Amount
+          th Type
+          th Actions
+      tbody
+        - each withdrawal in withdrawals
+          tr
+            td
+              a( href="/administratie/bank-withdrawals/#{withdrawal.id}") #{withdrawal.created_at.toFormat("DD MMM YYYY HH24:MI")}
+            td #{withdrawal.user.email}
+            td #{withdrawal.name}
+            td #{withdrawal.iban}
+            td #{withdrawal.amount}
+            td
+              - if(withdrawal.type ==1)
+                  span EU
+              - else
+                  span INTER
+            td
+              a.btn.btn-default( href="/administratie/bank-withdrawals/#{withdrawal.id}") view
+              - if(withdrawal.status == 1)
+                button.complete.btn.btn-success(data-id="#{withdrawal.id}") Accept
+                button.remove.btn.btn-danger(data-id="#{withdrawal.id}") Decline
+
+
+    p
+      - if (from - count >= 0)
+        a(href="/administratie/bank-withdrawals?from=#{from - count}&user_id=#{userId ? userId : ''}") Prev
+        |  | 
+      a(href="/administratie/bank-withdrawals?from=#{from + count}&user_id=#{userId ? userId : ''}") Next

@@ -1,0 +1,60 @@
+extends ../../layout
+
+block content
+  #verify-account.main-content.settings.user-area(role='main')
+    .wrapper
+      #min-height
+        .col-aside
+          ul.sub-nav
+            include sidebar.jade
+        .col-main
+          include ../_warnings
+          .container
+            .con-header
+              h1.con-header-title Verify Account
+            .con-body
+              p
+                | In order for the Swypto Exchange to follow international Anti Money Laundering (AML) legislation we need
+                |  you to verify your account in order to make withdrawals and obtain other benefits on the Swypto Exchange.
+              h3
+                |  TO VERIFY YOUR ACCOUNT (KYC) PLEASE SUBMIT:
+              h4
+                | 1.) a valid government issued ID, acceptable high quality images of documents are:
+              ul
+                li  International passport (front page and detail page)
+                li  National ID card (both sides)
+                li  Driver's license (both sides)
+              h4
+                | 2.) A proof of residency, acceptable scanned images of paper documents are:
+              ul
+                li  Bank statement
+                li  Utility bill for utilities consumed at your home address
+                li  Tax return, council tax
+                li Certificate of residency issued by a government or a local government authority
+              p
+                | You can also submit other documents to serve as proof of residency such as; government-issued documents,
+                |  judicial authority-issued documents, documents issued by a public agency / authority, utility service
+                |  company, or similar regulated service providing companies.
+              p
+                | <strong>NOTICE:</strong> To avoid delays when verifying your account; make sure that your submitted
+                |  documents are:
+              ul
+                li  Visible in their entirety (watermarks are permitted)
+                li  Images of high quality (color images, 300dpi resolution or higher)
+                li  Valid ID documents, with the expiry date clearly visible
+                li  Proof of residency document must be a scanned image of a PAPER document
+                li  Proof of residency document must be issued within the last 3 MONTHS and addressed to your name and home address
+
+              p
+                |  All documents need to be send to kyc@swypto.com – please enclose the following information:
+                ul
+                  li Your e-mail address (the one you use to login to Swypto Exchange)
+                  li Full Name
+                  li Phone number or alternative mail
+
+              h3 MY VERIFICATION WAS DENIED, WHAT NOW?
+              p
+                |  Please check your email for the reason and re-submit a verification request with the correct documents.
+                |  If you should need further assistance, please contact support at support@swypto.com
+
+

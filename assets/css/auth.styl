@@ -1,0 +1,174 @@
+.hint
+  display none
+  margin-top 5px
+  font-size 13px
+
+.auth
+  background $bgcolor
+  .main-content
+    margin 0
+    .wrapper
+      padding-top 80px
+      padding-bottom 100px
+  .terms
+    display block
+    font-size 12px
+    color $lightgray
+    padding 20px 0 0 0
+    text-align center
+    margin 0
+    a
+      color $lightgray
+
+.auth-wrap
+  clearfix()
+  width 680px
+  margin 0 auto
+  .auth-box
+    width 400px
+  
+.auth-features-box
+  width 380px
+  padding 10px
+  ul
+    reset-list()
+  i
+    font-size 24px
+    float left
+    margin 5px 10px 0 0
+
+  h2
+    margin 0 0 5px 0
+
+  h2
+  p 
+    margin-left 40px
+  p
+    color $lightgray
+
+.recaptcha_nothad_incorrect_sol
+  margin-bottom 10px
+
+.recaptchatable
+  box-sizing content-box
+  a, a:hover
+    color $lightgray !important
+    font-size 12px
+
+#recaptcha_response_field
+  border-color #d1d5dd !important
+  &:focus
+    border-color $blue !important
+
+#recaptcha_image
+  box-sizing content-box
+  border-radius 3px
+  overflow hidden
+
+.auth-box
+  @extend .container
+  background #fff
+  width 400px
+  margin 0 auto
+  padding 20px
+  &.large
+    width 484px
+  h1
+    @extends .con-header
+    font-size 20px
+    text-align center
+    margin -20px -20px 20px -20px
+    font-weight 500
+    padding 15px 0
+  input
+    width 100%
+  .control-group
+    margin 5px auto
+    .label
+      display block
+      padding-bottom 3px
+      font-size 13px
+      font-weight bold
+      a
+        font-weight normal
+        float right
+
+  input[type="submit"]
+    btn($teal)
+    padding 12px
+    margin 5px 0
+
+  .msg
+    text-align center
+    margin 30px 0 20px 0
+    color $darkblue
+
+.auth-links
+  text-align center
+  margin-top 20px
+  a
+    font-size 14px
+
+.input-prepend
+  display inline-block
+  width 100%
+  position relative
+  .add-on
+    position absolute
+    line-height 38px
+    top 0px
+    left 10px
+    color #a9a9a9
+    z-index 999
+  input
+    padding-left 30px
+
+.promo
+  text-align center
+  border-radius 3px
+  padding-top 8px
+  color $lightgray
+  font-size 13px
+  b
+    color $teal
+
+.misc
+  color $lightgray
+  font-size 13px
+  text-align center
+  margin 0
+  padding 5px 0 0 0
+
+/* Password strength meter */
+#password-strength
+  clearfix()
+  width 100%
+  padding-top 5px
+
+.cell
+  width 20%
+  float left
+  background-color #eff1f3
+  min-height 8px
+  border 1px solid #fff
+  border-radius 3px
+
+#strength-text
+  font-size 12px
+
+.veryweak
+  #s0
+    background-color red
+.weak
+  #s0, #s1
+    background-color #ee8262
+.adequate
+  #s0, #s1, #s2
+    background-color orange  
+.prettygood
+  #s0, #s1, #s2, #s3
+    background-color lighten($teal,30%)
+.excellent
+  #s0, #s1, #s2, #s3, #s4
+    background-color $teal
+  

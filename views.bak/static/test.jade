@@ -1,0 +1,50 @@
+extends ../layout
+block content
+  .main-content(role='main')
+    .wrapper
+      .one-col.content
+        .bank-data
+          table
+            tr
+              th
+              th
+            tr
+            tr
+              td Account owner:
+              td LXCCoin Ltd. (owner of Swypto Exchange)
+            tr
+              td Address:
+              td 1st Floor, 2 Woodberry Grove
+            tr
+              td City:
+              td Finchley, London N12 0DR
+            tr
+              td Country:
+              td United Kingdom
+            tr
+              td Bank name:
+              td Barclays Bank PLC
+            tr
+              td Address:
+              td 1 Churchill Place London Ec14 5Hp
+            tr
+              td City:
+              td Canary Wharf, E14 5HP London
+            tr
+              td Country:
+              td United Kingdom
+            tr
+              td Currency:
+              td EURO
+            tr
+              td IBAN:
+              td GB82 BARC 2026 2043 1066 75
+            tr
+              td BIC (SWIFT):
+              td BARCGB22
+            tr
+              td Message:
+              td
+                span
+                  “ #{user.name} #{ user.email }”
+                p (IMPORTANT: you must include this in the bank deposit message in order to credit your Swypto Exchange account)

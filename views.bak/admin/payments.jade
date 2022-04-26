@@ -1,0 +1,52 @@
+extends ../admin
+
+block content
+  .content
+    h2.content-title Payments
+
+    p
+      - if (from - count >= 0)
+        a(href="/administratie/payments?from=#{from - count}&user_id=#{userId ? userId : ''}") Prev
+        |  | 
+      a(href="/administratie/payments?from=#{from + count}&user_id=#{userId ? userId : ''}") Next
+
+    table#payments.table
+      thead
+        tr
+          th User
+          th Address
+          th Amount
+          th Time
+          th Status
+          
+      tbody
+        - each payment in payments
+          tr
+            td
+              a(href="/administratie/user/#{payment.user_id}", target="_blank") #{payment.user_id}
+              a.payment-log-toggler(href="#") (View log)
+              pre.payment-log.hidden
+                - each paymentLog in payment.paymentLogs
+                  | !{jsonBeautifier.toHTML(paymentLog.log)}
+                  br
+                  | #{paymentLog.created_at}
+                  hr
+                br
+                | IP: #{payment.remote_ip}
+            td #{payment.address}
+            td #{_str.toFixed(payment.getFloat('amount'))} #{payment.currency}
+            td #{payment.created_at.toFormat("DD MMM YYYY HH24:MI")}
+            td
+              - if (payment.fraud)
+                span.fraud FRAUD 
+              span.payment-status #{payment.status}
+              - if (!payment.isProcessed() && !payment.isCanceled())
+                button.pay.btn.btn-success(data-id="#{payment.id}") Accept
+                button.remove.btn.btn-danger(data-id="#{payment.id}") Decline
+            
+
+    p
+      - if (from - count >= 0)
+        a(href="/administratie/payments?from=#{from - count}&user_id=#{userId ? userId : ''}") Prev
+        |  | 
+      a(href="/administratie/payments?from=#{from + count}&user_id=#{userId ? userId : ''}") Next

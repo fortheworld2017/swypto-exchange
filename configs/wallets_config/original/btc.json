@@ -1,0 +1,19 @@
+{
+  "client": {
+    "host": "10.131.219.88",
+    "port": 8332,
+    "user": "bitcoinrpc",
+    "pass": "HUuULf7Nk58gDmRCd8eZLNYDrUpHyHhKt37NqfdhSSZn",
+    "ssl": false,
+    "sslStrict": false,
+    "sslCa": false
+  },
+  "wallet": {
+    "address": "13YC4S7qyi6PK8XWyRWhEMWPp6h4DrR3Wo",
+    "account": "BTC LXCCOIN",
+    "passphrase": ""
+  },
+  "confirmations": 1,
+  "transaction_fee": 0.0001,
+  "currency": "BTC"
+}

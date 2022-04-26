@@ -1,0 +1,26 @@
+- if (marketStats)
+  .market-ticker
+    .con-header
+      h2.con-header-title XWBC Markets
+      // a(href='').edit-ticker <i class='icon-list-ul'></i>
+    nav#market-ticker.market-ticker-coins
+
+      ul
+        - each info, type in marketStats
+          - var growthRatio = _str.roundTo(info.growth_ratio, 2);
+          - if (info.label)
+            li.market-ticker-coin(data-market-type="#{type}", data-market-currency="#{info.label}", class="#{info.label == currency1 ? 'active' : ''}")
+              a(href="/trade/#{type.replace('_', '/')}")
+                .label #{info.label}
+                - if (info.status === "disabled")
+                  div(class="rate on-hold") ON HOLD
+                - else
+                  div(class="rate #{growthRatio > 0 ? 'up' : ''} #{growthRatio < 0 ? 'down' : ''} #{growthRatio == 0 ? 'none' : ''}") #{_str.toFixed(info.last_price, 8)}
+                .move-coin <i class="icon-reorder"></i>
+
+    .add-coin
+      select
+        option(val='') Display Exchange
+        option(val='CL') CL - CopperLark
+        option(val='DVC') DVC - Devcoin
+        option(val='MNC') MNC - MinCoin

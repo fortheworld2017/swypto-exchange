@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  .main-content(role='main')
+    .wrapper
+      .col-aside
+        ul.sub-nav
+          li: a(href='/legal/terms') Terms of Service
+          li: a(href='/legal/privacy') Privacy Policy
+          li.active: a(href='/legal/cookie') About Cookies
+          li: a(href='/legal/aml') AML Policy
+      .col-main.content
+        h1.page-title About Cookies
+        p
+          | Cookies are small text files that are placed on your computer by websites that you visit or certain emails you open.
+          | They are widely used in order to make websites work, or work more efficiently, as well as to provide business and marketing information
+          | to the owners of the site. Cookies also enable a web site to tailor information presented to you based on your browsing preferences, such as
+          | language and geographical region. For more detailed information about cookies visit #[a(href="www.allaboutcookies.org") www.allaboutcookies.org.]
+          | To opt out from behavioral advertising by networks adhering to the Network Advertising Initiative visit #[a(href="www.networkadvertising.org/managing/opt_out.asp") www.networkadvertising.org].
+

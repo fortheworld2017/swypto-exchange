@@ -1,0 +1,59 @@
+extends ../../layout
+
+block content
+  #finances.main-content.settings.user-area(role='main')
+    .wrapper
+      #min-height
+        .col-aside
+          ul.sub-nav
+            include sidebar.jade
+        .col-main#finances-cnt
+
+          //all orders that have been processed
+          //all transactions that have been processed
+          //// Order History
+          //#order-history.order-history.container
+          //  .con-header
+          //    h3.con-header-title Order History
+          //  .table-wrap
+          //    table.trade-data
+          //      thead
+          //        tr
+          //          th Market
+          //          th Date
+          //          th Type
+          //          th Price
+          //          th Amount
+          //          th Total
+          //      tbody#overview-closed-orders-cnt
+          //#pending-transactions.container
+          //  .con-header
+          //    h3.con-header-title Pending Transactions
+          //  each wallet in wallets
+          //    table.trade-data
+          //      tr
+          //        th Description
+          //        th Amount
+          //        th Confirms
+          //        -console.log(wallet.id);
+          //        tbody.all-transactions(data-wallet-id="#{wallet.id}")
+          //pending transactions
+          //each wallet in wallets
+          //  -console.log(wallet.id);
+          //  .con-header
+          //    h3.con-header-title Pending Transactions!!!
+          //  table.trade-data
+          //    tr
+          //      th Description
+          //      th Amount
+          //      th Confirms
+          //    tbody.all-transactions(data-wallet-id="#{wallet.id}")
+
+
+
+
+
+  include ../../templates/wallet_open_order
+  include ../../templates/wallet_closed_order
+  include ../../templates/pending_transaction
+  include ../../templates/transaction_history

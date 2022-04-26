@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  #min-height.main-content(role='main')
+    .wrapper
+      .col-aside
+        ul.sub-nav
+          li.active: a(href='/legal/terms') Terms of Service
+          li: a(href='/legal/privacy') Privacy Policy
+          li: a(href='/legal/cookie') Cookie Policy
+          li: a(href='/legal/aml') AML Policy
+      .col-main.content
+        h1.page-title Privacy Policy
+

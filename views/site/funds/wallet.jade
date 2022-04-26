@@ -1,0 +1,123 @@
+extends ../../layout
+
+block content
+  #finances.main-content.settings(role='main')
+    .wrapper
+      .col-aside
+        include _funds_list
+      .col-main
+        #balance.container
+          .con-header
+            h3.con-header-title
+              img(src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==", alt="icon", class="coin-icon #{wallet.currency_name.toLowerCase()}")
+              | #{currencies[wallet.currency]} Balance
+            .header-aside
+              a(href="/trade/#{wallet.currency}/BTC") Trade #{wallet.currency}/BTC 
+          table.trade-data
+            tr
+              th Total Balance
+              th Available Balance
+              th Held for Orders
+            tr
+              td <span data-wallet-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('total_balance'))}</span> #{wallet.currency}
+              td <span data-wallet-available-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('balance'))}</span> #{wallet.currency}
+              td <span data-wallet-hold-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('hold_balance'))}</span> #{wallet.currency}
+          
+        // Pending Transactions
+        #pending-transactions.container
+          .con-header
+            h3.con-header-title Pending Transactions
+          table.trade-data
+            tr
+              th Description
+              th Amount
+              th Confirms
+            tbody#pending-transactions-cnt(data-wallet-id="#{wallet.id}")
+
+        // Deposit
+        .wrap
+          .two-col-wrap
+            .transaction-con.container
+              .con-header
+                h3.con-header-title <i class="icon-circle-arrow-down"></i> Deposit #{currencies[wallet.currency]}
+              .con-body
+                label To deposit #{currencies[wallet.currency]}, send to this address:
+                .coin-deposit-address
+                  code#address-row #{wallet.address}
+                  - if (!wallet.address)
+                    button#generate-address(data-id="#{wallet.id}") Generate Wallet Address
+                  .coin-deposit-actions
+                    button#show-qr-bt Show QR
+                    button#copy-address(data-clipboard-text="#{wallet.address ? wallet.address : ''}") Copy
+                #qr-address-cnt.qr-address(data-address="#{wallet.address ? wallet.address : ''}")
+                ul.terms
+                  li Your deposit will be credited after #{wallet.network_confirmations} network confirmations.
+          .two-col-wrap
+            .transaction-con.container
+              .con-header
+                h3.con-header-title <i class="icon-circle-arrow-up"></i> Withdraw #{currencies[wallet.currency]}
+                .header-balance <a href="#" class="amount"><span data-wallet-available-balance-id="#{wallet.id}" data-withdrawal-fee="#{wallet.getFloat('withdrawal_fee')}">#{_str.toFixed(wallet.getFloat('balance'))}</span>  #{wallet.currency}</a> Available
+              .con-body
+                form#withdraw-form
+                  input(type="hidden", name="wallet_id", value="#{wallet.id}")
+                  label Enter the amount you would like to withdraw:
+                  .currency-input
+                    input#withdrawal-amount.amount-field(type="text", name="amount", placeholder="Amount")
+                    .overlay-amount #{wallet.currency}
+                  label Enter a #{currencies[wallet.currency]} address:
+                  .address-input
+                    input(type="text", name="address", placeholder="#{wallet.currency} address", data-currency="#{wallet.currency}")
+                  .withdraw-button
+                    button Withdraw
+                  ul.terms
+                    li Fee for withdrawal is #{wallet.getFloat('withdrawal_fee')} #{wallet.currency}.
+
+        // Open Orders (All)
+        #open-orders.container
+          .con-header
+            h3.con-header-title Open Orders
+          table.trade-data
+            thead
+              tr
+                th Market
+                th Date
+                th Type
+                th Price
+                th Amount
+                th Total
+                th Action
+            tbody#open-orders-cnt(data-currency1="#{wallet.currency}")
+
+        // Order History
+        #order-history.order-history.container
+          .con-header
+            h3.con-header-title Order History
+          .table-wrap
+            table.trade-data
+              thead
+                tr
+                  th Market
+                  th Date
+                  th Type
+                  th Price
+                  th Amount
+                  th Total
+              tbody#closed-orders-cnt(data-currency1="#{wallet.currency}")
+
+        // Transaction History
+        #balance-history.balance-history.container
+          .con-header
+            h3.con-header-title Transaction History
+          .table-wrap
+            table.trade-data
+              thead
+                tr
+                  th Date
+                  th Description
+                  th Amount
+              tbody#transactions-history-cnt(data-wallet-id="#{wallet.id}")
+                
+  include ../../templates/pending_transaction
+  include ../../templates/transaction_history
+  include ../../templates/wallet_open_order
+  include ../../templates/wallet_closed_order

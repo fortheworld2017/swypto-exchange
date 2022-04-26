@@ -1,0 +1,54 @@
+script(type="text/template", id="bank-form")
+  #withdrawal-info
+    -  if(typeof(type) !=='undefined'){
+         - if(type ==='Inter') {
+           p
+            ul
+              li  Withdrawals will be charged with 0.25% fee. Minimum fee is $20.00 on Swypto Exchange end and may incur additional international bank fees.
+              li  Minimum amount for international withdrawal is $120.00.
+              li  You always have to insert amount in USD that you wish to withdraw. This amount will be converted to the selected currency.
+              li  Third party transfers from corporate bank accounts may require further KYC checking.
+         - }else if(type ==='EU') {
+           p
+            ul
+              li  Minimum withdrawal amount is &euro; 100.
+              li  EU withdrawals will be charged with 0.25% fee, minimum fee is &euro; 20.00.
+              li  Third party withdrawal requests will be rejected. Transfers to corporate bank accounts may require further KYC checking.
+         - }
+    -  }
+
+
+  form#bank-withdraw-form.pure-form.pure-form-aligned
+    input(type="hidden", name="wallet_id", value="#{wallet.id}")
+    input(type="hidden", name="type", value="#{type}")
+    .container
+    #user-bank-edit.con-body
+      form#bank-edit-form.pure-form.pure-form-aligned(action="#", method="post")
+        //input(type="hidden", name="_csrf", value="#{csrfToken}") #{userBank?(userBank.name?userBank.name:''}
+        #error-cnt
+        .pure-control-group
+          label(for="account_holder_name").label Account Holder's Name:
+          input#account_holder_name(type="text",placeholder="Account Holder's Name", name="account_holder_name", value=(userBank?userBank.name:''), tabindex="11", autocomplete="off")
+        .pure-control-group
+          label(for="bank_name").label Bank Name:
+          input#bank_name(type="text", placeholder="Bank's Name", name="bank_name", value=(userBank?userBank.bank_name:''), tabindex="11", autocomplete="off")
+        .pure-control-group
+          label(for="bank_address").label Bank Address:
+          input#bank_address(type="text", placeholder="Bank Address", name="bank_address", value=(userBank?userBank.bank_address:''), tabindex="11", autocomplete="off")
+        .pure-control-group
+          label(for="bank_city").label Bank City:
+          input#bank_city(type="text",placeholder="Bank City", name="bank_city", value=(userBank?userBank.bank_city:''), tabindex="12", autocomplete="off")
+        .pure-control-group
+          label(for="bank_post_code").label Bank Postcode:
+          input#bank_post_code(type="text",placeholder="Bank Post code", name="bank_post_code", value=(userBank?userBank.bank_postalcode:''), tabindex="13", autocomplete="off")
+        .pure-control-group
+          label(for="bank_country").label Country of bank:
+          input#bank_country(type="text",placeholder="Bank Country", name="bank_country", value=(userBank?userBank.bank_country:''), tabindex="14")
+        .pure-control-group
+          label(for="iban").label IBAN / Bank Account:
+          input#iban(type="text", name="iban",placeholder="IBAN", value=(userBank?userBank.IBAN:''), tabindex="15", autocomplete="off")
+        .pure-control-group
+          label(for="swift_code").label SWIFT/BIC Code:
+          input#swift_code(type="text",placeholder="SWIFT/BIC", name="swift_code", value=(userBank?userBank.SWIFT:''), tabindex="16", autocomplete="off")
+          input#preferred_currency(type="hidden", name="preferred_currency", value="USD")
+        input#bank-withdraw-save-button.btn.btn-danger(type="submit", value="Submit", tabindex="18")

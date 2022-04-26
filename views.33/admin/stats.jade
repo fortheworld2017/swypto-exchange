@@ -1,0 +1,18 @@
+extends ../admin
+
+block content
+  .content
+    h2.content-title Wallet Balances
+
+    table.table.wallet-balance
+      - for currency in currencies
+        tr
+          td.label
+            a(data-currency="#{currency}").btn.show-wallet-info-bt #{currency}
+            div(id="wallet-info-cnt-#{currency}").hidden
+              span(id="wallet-address-#{currency}")
+              pre(id="wallet-info-#{currency}")
+          td 
+            span(id="bank-balance-#{currency}") pending...
+
+    br

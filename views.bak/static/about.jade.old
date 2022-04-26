@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  .main-content(role='main')
+    .wrapper
+      .one-col.content
+        h1.page-title About Swypto Exchange
+        p
+          | Swypto Exchange is a professional facilitator in the global crypto currency markets and are able to offer low trading fees and high volume to crypto coins traders.
+          | Swypto Exchange is owned by  #[a(href="www.lxccoin.com") LXCCoin Ltd.], founded in 2014 and is a transparent crypto coin exchange working globally in a secure and professional environment. LXCCoin Ltd. is a UK registered company and a part of the StrategaBiz Inc. group listed on OTCQB in the USA.
+          | #[a(href="www.strategabiz.com") StrategaBiz]  is focusing on investment within the crypto currency industry. The company has more than 400 shareholders and a market value of USD of more than 50 million.
+
+        h1.page-title Offices:
+        h2 United Kingdom
+        p.address
+          | 1st Floor, 2 Woodberry Grove
+          | Finchley, London N12 0DR
+          | England
+        h2 U.S.A
+        p.address
+          | 922 Chappel Valley Loop
+          | Lehi, UT 84043
+          | U.S.A
+        h2 Malta
+        p.address
+          | Vincenti Buildings, suite 317
+          | 14/19 Strait Street, Valletta VLT 08
+          | Malta
+        p Please contact our support for any inquires #[a(href="mailto:support@swypto.com") support@swypto.com ]
+

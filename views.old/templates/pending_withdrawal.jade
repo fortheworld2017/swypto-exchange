@@ -1,0 +1,13 @@
+script(type="text/template", id="pending-withdrawal-tpl")
+  tr( data-id="<%= withdrawal.id %>")
+    td
+      <%= withdrawal.getCreatedDate() %>
+    td
+      <%= withdrawal.get('name') %>
+    td
+      <%= withdrawal.get('IBAN') %>
+    td
+      <%= withdrawal.get('amount') %>
+
+
+

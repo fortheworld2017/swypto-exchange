@@ -1,0 +1,64 @@
+extends ../../layout
+block content
+  #transactions.main-content.settings.user-area(role='main')
+    .wrapper
+      #min-height
+        .col-aside
+          ul.sub-nav
+            include sidebar.jade
+        .col-main#profile-completed-orders
+          #profile-completed-orders.container
+            .con-header
+              h3.con-header-title Completed Orders
+              .header-balance
+                a#export-excel-closed(href='/open-orders/excel')
+                  i.fa.fa-file-excel-o  Export
+            .table-wrap
+              table.trade-data
+                thead
+                  tr
+                    th Market
+                    th Date
+                    th Type
+                    th Price
+                    th Amount
+                    th Total
+                    //th Action
+                tbody#trans-closed-orders
+          // Transaction History BTC/XWBC
+          #profile-completed-transactions.container
+            .con-header
+              h3.con-header-title Transaction History
+              .header-balance
+                a#export-excel-transactions(href='/completed-transactions/excel')
+                  i.fa.fa-file-excel-o  Export
+            .table-wrap
+              table.trade-data
+                thead
+                  tr
+                    th Date
+                    th Description
+                    th Amount
+                    th Address
+                    th Transaction ID
+                tbody#trans-completed-transactions
+
+          //Processed Withdrawals
+          #profile-completed-bank-withdrawals.container
+            .con-header
+              h3.con-header-title Bank Withdrawal History
+              .header-balance
+                a#export-excel-withdrawals(href='/completed-bank-withdrawals/excel')
+                  i.fa.fa-file-excel-o  Export
+            table.trade-data
+              thead
+                tr
+                  th Date
+                  th Name
+                  th IBAN
+                  th Amount
+              tbody#trans-completed-bank-withdrawals
+  include ../../templates/transaction_completed_order
+  include ../../templates/transaction_xwbc
+  include ../../templates/completed_payments
+  include ../../templates/pending_withdrawal

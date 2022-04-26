@@ -1,0 +1,22 @@
+extends ../../layout
+
+block content
+  #settings.main-content.settings(role='main')
+    .wrapper
+      //.col-aside
+      //  ul.sub-nav
+      //    //li: a(href='/settings') Settings
+      //    li.active: a(href='/settings/preferences') Preferences
+      //    li: a(href='/settings/security') Security
+      include sidebar.jade
+
+      .col-main
+        .container
+          .con-header
+            h1.con-header-title Notifications
+          .con-body
+            fieldset.checkbox
+              label(for="email_auth_enabled")
+                input(type="checkbox" name="email_auth_enabled" id="email_auth_enabled" checked=(user.email_auth_enabled))
+                | Email on authentication
+

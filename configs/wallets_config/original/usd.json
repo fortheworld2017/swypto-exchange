@@ -1,0 +1,19 @@
+{
+  "client": {
+    "host": "127.0.0.1",
+    "port": 18332,
+    "user": "Litebreeze",
+    "pass": "litebreeze123",
+    "ssl": false,
+    "sslStrict": false,
+    "sslCa": false
+  },
+  "wallet": {
+    "address": "mrHan2wsGtSniJeNXuajHzVbv1Yk3gopa7",
+    "account": "USD LXCCOIN",
+    "passphrase": ""
+  },
+  "confirmations": 1,
+  "transaction_fee": 0.0001,
+  "currency": "USD"
+}

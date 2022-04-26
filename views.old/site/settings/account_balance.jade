@@ -1,0 +1,38 @@
+extends ../../layout
+
+block content
+  #settings-balances.main-content.settings.user-area(role='main')
+    .wrapper
+      #min-height
+        .col-aside
+          ul.sub-nav
+            include sidebar.jade
+        .col-main#finances-cnt
+          include ../_warnings
+          #wallets.container
+            .con-header
+                h3.con-header-title Balances
+            table.trade-data
+                tr
+                  th Currency
+                  th Total Balance
+                  th Available Balance
+                  th Held for Orders
+                  th Wallet Address
+                - each wallet in wallets
+                  tr.wallet(data-id="#{wallet._id}")
+                    if wallet.currency != 'EURO'
+                      td <a href="/settings/transactions_history/#{wallet.currency}">#{wallet.currency}</a>
+                    else
+                      td <a href="/funds/#{wallet.currency}">#{wallet.currency}</a>
+                    td <span data-wallet-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('total_balance'))}</span> #{wallet.currency}
+                      td <span data-wallet-available-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('balance'))}</span> #{wallet.currency}
+                      td <span data-wallet-hold-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('hold_balance'))}</span> #{wallet.currency}
+                        if wallet.currency != 'USD' && wallet.currency != 'GBP'
+                          if (!wallet.address)
+                            td
+                              a(href='/wallets2/'+wallet.id) Generate Wallet Address
+                          else
+                            td #{wallet.address}
+                        else
+                          td 

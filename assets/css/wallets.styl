@@ -1,0 +1,187 @@
+.wallets
+  reset-list()
+
+#open-orders
+#order-history
+#pending-transactions
+#balance-history
+#trade-history
+  display none
+
+.add-wallet
+  border-top 1px dotted #e0e5e8
+  background #f9f9f9
+  padding 10px
+  select
+    width 77%
+    font-size 16px
+  button
+    btn($teal)
+    margin-left 3%
+    width 20%
+    height 25px
+    padding 0 5px
+    font-size 12px
+
+.fund-nav
+  reset-list()
+  li
+    border-bottom 1px solid #ecedef
+    border-top 1px solid #ecedef
+    cursor pointer
+    margin-top -1px
+    margin-bottom -1px
+    &.active a
+      border-radius 2px
+      background $blue
+      border 0
+      font-weight bold
+      color #fff
+      &:hover
+        color #fff
+    a
+      clearfix()
+      height 29px
+      padding 6px
+      margin 3px
+      display block
+      color inherit
+      &:hover
+        color $blue
+        text-decoration none
+      &:active
+        color #14294e
+      .label
+        float left
+      .balance
+        float right
+
+#balance
+  th
+    width 200px
+
+#markets
+  float right
+  width 150px
+
+.transaction-con
+  min-height 280px
+  label
+    margin-bottom 5px
+    display block
+  .confirm-order
+    margin-top 10px
+  .terms
+    reset-list()
+    margin-top 5px
+    text-align center
+    color #999
+    margin 10px -10px -10px -10px
+    padding 10px
+    border-top 1px solid #ecedef
+    li
+      margin-top 3px
+      &:first-child
+        margin 0
+
+  .currency-input
+  .address-input
+    width 100%
+    margin-bottom 5px
+
+.coin-deposit-address
+  border 1px solid #e9eaed
+  border-radius 3px
+  background #fcfce6
+  padding 3px
+  position relative
+  word-wrap break-word
+  clearfix()
+  code
+    float left
+    height 24px
+    font-size 12px
+    line-height 24px
+    font-weight bold
+  button
+    white-space nowrap
+    background #fff
+    height 24px
+    line-height 24px
+    color inherit
+    border-radius 3px
+    margin-right 3px
+    position relative
+    padding 0 8px
+    text-transform uppercase
+    border 1px solid $border-color
+    font-size 12px
+    transition all .1s linear
+    &:hover
+      color $blue
+      border-color $blue
+    &:active
+      top 1px
+
+.coin-deposit-actions
+  white-space nowrap
+  float right
+  button
+    display none
+    &.zeroclipboard-is-hover
+      color $blue
+      border-color $blue
+    &.zeroclipboard-is-active
+      top 1px
+    &:last-child
+      margin-right 0
+      
+.qr-address
+  text-align center
+  width 100px
+  margin 10px auto
+  img
+    height 100px
+    width 100px
+
+.add .trade-amount
+  color $teal
+.substract .trade-amount
+  color $red
+
+#generate-address
+  float left
+  width 100%
+
+.qr-code
+  display inline-block
+  float left
+  margin 0 10px 10px 0
+
+#gauth-key
+  font-weight bold
+  font-size 13px
+
+.withdraw-button
+  button
+    width 100%
+    padding 0
+    height 30px
+    line-height 30px
+    btn($teal)
+
+.gauth-input
+  width 440px
+
+.gauth-label
+  margin-bottom 5px
+
+.gauth-info
+  float left
+  .gauth-label
+    display block
+
+  .key
+    margin-bottom 10px
+    padding-bottom 10px
+    border-bottom 1px solid #ecedef

@@ -1,0 +1,24 @@
+extends ../../layout
+
+block content
+  #settings.main-content.settings(role='main')
+    .wrapper
+      .col-aside
+        ul.sub-nav
+          //li: a(href='/settings') Settings
+          li.active: a(href='/settings/preferences') Preferences
+          li: a(href='/settings/security') Security
+          li: a(href='/settings/bank') your bank account details
+
+      .col-main
+        .container
+          .con-header
+            h1.con-header-title Social
+          .con-body
+            div
+              form(action='/bank',method='post')
+                label(for='name') email
+                  input(id='name',type='text',value=bank.Name,name='name')
+            div(data-role='fieldcontain')   
+              input(type='submit',value='Sign Up')
+            

@@ -1,0 +1,16 @@
+extends ../../layout
+
+block content
+  #settings.main-content.settings(role='main')
+    .wrapper
+      .col-aside
+        ul.sub-nav
+          //li.active: a(href='/settings') Settings
+          li: a(href='/settings/preferences') Preferences
+          li: a(href='/settings/security') Security
+
+      .col-main
+        .container
+          .con-header
+            h1.con-header-title Settings
+          .con-body

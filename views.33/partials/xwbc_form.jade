@@ -1,0 +1,15 @@
+script(type="text/template", id="xwbc-form")
+  form#xwbc-withdraw-form.pure-form.pure-form-aligned
+    input(type="hidden", name="wallet_id", value="#{wallet.id}")
+    fieldset
+      .pure-control-group
+        label(for='withdrawal-amount') Amount(#{wallet.currency}):
+        input#withdrawal-amount.amount-field(type="text", name="amount", placeholder="Amount (#{wallet.currency})",value="<%= payment !== null? payment.get('amount'):'' %>")
+      .pure-control-group
+        label(for='password') Enter a #{currencies[wallet.currency]} address:
+        input#address(type='text', name='address', placeholder='#{wallet.currency} address',value="<%= payment !== null? payment.get('address'):'' %>")
+      .pure-control-group
+        label(for='Label') Label
+        input#label(type='text', placeholder='Label',name ='label', value="<%= payment !== null? payment.get('label'):'' %>")
+      .pure-controls
+        button.pure-button.pure-button-primary(type='submit') Submit

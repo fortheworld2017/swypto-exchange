@@ -1,0 +1,63 @@
+extends ../admin
+
+block content
+  .content
+    h2.content-title Bank Withdrawal #{withdrawal.type} / #{withdrawal.user.id} / #{withdrawal.id}
+
+    table#withdrawal-table.table.table-striped
+      //thead
+      //  tr
+      //    th Wallet
+      //    th Address
+      tbody
+          tr
+            td Username
+            td
+              p(href="#", target="_blank") #{withdrawal.user.username}
+          tr
+            td Beneficiary Full Name/Company Name
+            td
+              p(href="#", target="_blank") #{withdrawal.name}
+          tr
+            td Email
+            td
+              p(href="#", target="_blank") #{withdrawal.user.email}
+          tr
+            td Amount
+            td
+              p(href="#", target="_blank") #{withdrawal.amount}
+          tr
+            td IBAN
+            td
+              p(href="#", target="_blank") #{withdrawal.iban}
+
+          tr
+            td SWIFT/BIC
+            td
+              p(href="#", target="_blank") #{withdrawal.bic_swift}
+
+          tr
+            td Address
+            td
+              p(href="#", target="_blank") #{withdrawal.address}
+
+          tr
+            td Postal Code
+            td
+              p(href="#", target="_blank") #{withdrawal.postalcode}
+          tr
+            td City
+            td
+              p(href="#", target="_blank") #{withdrawal.city}
+          tr
+            td Country
+            td
+              p(href="#", target="_blank") #{withdrawal.country}
+          tr
+            td Type
+            td
+              - if(withdrawal.type ==1)
+                  span EU
+              - else
+                  span INTER
+          

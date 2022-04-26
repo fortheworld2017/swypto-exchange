@@ -1,0 +1,92 @@
+extends ../../layout
+block content
+    #profile-main.main-content.settings.user-area(role='main')
+        .wrapper
+          #min-height
+            .col-aside
+              ul.sub-nav
+                include sidebar.jade
+            .col-main
+                include ../_warnings
+                .container
+                    .con-header
+                        h1.con-header-title Edit Profile
+                    #profile-edit.con-body
+                      form#profile-edit-form.pure-form.pure-form-aligned(action="/settings/profile/update", method="post")
+                        input(type="hidden", name="_csrf", value="#{csrfToken}")
+                        #error-cnt
+                        .pure-control-group
+                          label(for="email").label Email address:
+                            span.required *
+                          input#email(type="text",placeholder="Email", name="email", value="#{user.email}", tabindex="1", autocomplete="off")
+                        .pure-control-group
+                          label(for="firstname").label Firstname:
+                            span.required *
+                          input#firstname(type="text",placeholder="Firstname", name="firstname", value="#{user.firstname}", tabindex="2", autocomplete="off")
+                        .pure-control-group
+                          label(for="lastname").label Lastname:
+                            span.required *
+                          input#lastname(type="text",placeholder="Lastname", name="lastname", value="#{user.lastname}", tabindex="2", autocomplete="off")
+                        .pure-control-group
+                          label(for="address1").label Address 1
+                            span.required *
+                          input#address1(type="text", name="address1",placeholder="Address 1", value=(user.address1?user.address1:''), tabindex="4", autocomplete="off")
+                        .pure-control-group
+                          label(for="address2").label Address 2
+                          input#address2(type="text",name="address2",placeholder="Address 2",value=(user.address2?user.address2:''), tabindex="5", autocomplete="off")
+                        .pure-control-group
+                          label(for="postcode").label Post Code
+                            span.required *
+                          input#postcode(type="text", name="postcode",placeholder="Postcode", value=(user.postcode?user.postcode:''), tabindex="6", autocomplete="off")
+                        .pure-control-group                          
+                          label(for="city").label City
+                            span.required *                            
+                          input#city(type="text",name="city",placeholder="City", value=(user.city?user.city:''),  tabindex="7", autocomplete="off")
+                        .pure-control-group
+                          label(for="country").label Country
+                            span.required *                          
+                          input#country(type="text",name="country",placeholder="Country", value=(user.country?user.country:''), tabindex="8", autocomplete="off")
+                        .pure-control-group
+                            label(for="phone").label Phone Number
+                            input#phone(type="number", name="phone",placeholder="Phone", value=(user.phone?user.phone:''), tabindex="9", autocomplete="off")
+                        .pure-control-group
+                            label(for="skypeId").label Skype ID
+                            input#skypeId(type="text", name="skypeId",value=(user.skypeId?user.skypeId:''), placeholder="Skype ID",tabindex="10", autocomplete="off")
+                        .pure-control-group
+                            label(for="alternate_email").label Alternate Email
+                            input#alternate_email(type="text",placeholder="Alternate Email", name="alternate_email", value=(user.alternate_email ? user.alternate_email : ''),  tabindex="3", autocomplete="off")
+                        input#profile-save-button.btn.btn-danger(type="submit", value="Save", tabindex="11")
+                .container
+                    .con-header
+                       h1.con-header-title Bank Details
+                    #user-bank-edit.con-body
+                      form#bank-edit-form.pure-form.pure-form-aligned(action="#", method="post")
+                        //input(type="hidden", name="_csrf", value="#{csrfToken}") #{userBank?(userBank.name?userBank.name:''}
+                        #error-cnt
+                        .pure-control-group
+                          label(for="account_holder_name").label Account Holder's Name:
+                          input#account_holder_name(type="text",placeholder="Account Holder's Name", name="account_holder_name", value=(userBank?userBank.name:''), tabindex="11", autocomplete="off")
+                        .pure-control-group
+                          label(for="bank_name").label Bank Name:
+                          input#bank_name(type="text", placeholder="Bank's Name", name="bank_name", value=(userBank?userBank.bank_name:''), tabindex="11", autocomplete="off")
+                        .pure-control-group
+                          label(for="bank_address").label Bank Address:
+                          input#bank_address(type="text", placeholder="Bank Address", name="bank_address", value=(userBank?userBank.bank_address:''), tabindex="11", autocomplete="off")
+                        .pure-control-group
+                          label(for="bank_city").label Bank City:
+                          input#bank_city(type="text",placeholder="Bank City", name="bank_city", value=(userBank?userBank.bank_city:''), tabindex="12", autocomplete="off")
+                        .pure-control-group
+                          label(for="bank_post_code").label Bank Postcode:
+                          input#bank_post_code(type="text",placeholder="Bank Post code", name="bank_post_code", value=(userBank?userBank.bank_postalcode:''), tabindex="13", autocomplete="off")
+                        .pure-control-group
+                          label(for="bank_country").label Country of bank:
+                          input#bank_country(type="text",placeholder="Bank Country", name="bank_country", value=(userBank?userBank.bank_country:''), tabindex="14")
+                        .pure-control-group
+                          label(for="iban").label IBAN / Bank Account:
+                          input#iban(type="text", name="iban",placeholder="IBAN", value=(userBank?userBank.IBAN:''), tabindex="15", autocomplete="off")
+                        .pure-control-group
+                          label(for="swift_code").label SWIFT/BIC Code:
+                          input#swift_code(type="text",placeholder="SWIFT/BIC", name="swift_code", value=(userBank?userBank.SWIFT:''), tabindex="16", autocomplete="off")
+                          input#preferred_currency(type="hidden", name="preferred_currency", value="USD")
+                        input#bank-save-button.btn.btn-danger(type="submit", value="Save", tabindex="18")
+

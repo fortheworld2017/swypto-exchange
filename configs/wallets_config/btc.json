@@ -1,0 +1,19 @@
+{
+  "client": {
+    "host": "10.128.0.14",
+    "port": 8332,
+    "user": "bitcoinrpc",
+    "pass": "HUuULf7Nk58gDmRCd8eZLNYDrUpHyHhKt37NqfdhSSZn",
+    "ssl": false,
+    "sslStrict": false,
+    "sslCa": false
+  },
+  "wallet": {
+    "address": "14n724eY7HYSMq33mjrWDwmf1a5mNjgP49",
+    "account": "BTCLXCCOIN",
+    "passphrase": ""
+  },
+  "confirmations": 1,
+  "transaction_fee": 0.0001,
+  "currency": "BTC"
+}

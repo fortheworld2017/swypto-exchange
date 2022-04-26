@@ -1,0 +1,165 @@
+script(type="text/template", id="withdrawal-confirmation-tpl")
+  .special_tab
+      table(width='100%', border='0', cellpadding='1', cellspacing='0', bgcolor='#EAEAEA')
+          tbody
+            tr
+              td
+                table(width='60%', border='0', cellpadding='5', cellspacing='0', bgcolor='#FFFFFF',align="center")
+                  tbody
+                    <% if (type === 'BTC' || type === 'XWBC') { %>
+                    tr
+                      td
+                        strong Amount: &nbsp;
+                      
+                        strong <%= payment !== null? payment.get('amount'):'' %>
+                    tr
+                      td
+                        strong Address: &nbsp;
+                      
+                        strong <%= payment !== null? payment.get('address'):'' %>
+                    tr
+                      td
+                        strong Label: &nbsp;
+                      
+                        strong <%= payment !== null? payment.get('label'):'' %>
+                    <% }else if (type === 'EU'){ %>
+                    tr
+                      td
+                        strong Full Name/Company Name: &nbsp;
+
+                        strong <%= payment !== null? payment.get('name'):'' %>
+                    tr
+                      td
+                        strong Email: &nbsp;
+
+                        strong <%= payment !== null? payment.get('email'):'' %>
+                    tr
+                      td
+                        strong Amount: &nbsp;
+
+                        strong <%= payment !== null? payment.get('amount'):'' %>
+                    tr
+                      td
+                        strong IBAN: &nbsp;
+
+                        strong <%= payment !== null? payment.get('iban'):'' %>
+                    tr
+                      td
+                        strong SWIFT/BIC: &nbsp;
+
+                        strong <%= payment !== null? payment.get('bic_swift'):'' %>
+                    tr
+                      td
+                        strong Address: &nbsp;
+
+                        strong <%= payment !== null? payment.get('address'):'' %>
+                    tr
+                      td
+                        strong Postal Code: &nbsp;
+
+                        strong <%= payment !== null? payment.get('postalcode'):'' %>
+                    tr
+                      td
+                        strong City: &nbsp;
+
+                        strong <%= payment !== null? payment.get('city'):'' %>
+                    tr
+                      td
+                        strong Country: &nbsp;
+
+                        strong <%= payment !== null? payment.get('country'):'' %>
+                    tr
+                      td
+                        strong Label: &nbsp;
+
+                        strong <%= payment !== null? payment.get('label'):'' %>
+
+
+                    <% }else if (type === 'Inter'){ %>
+                    tr
+                      td
+                        strong Full Name/Company Name: &nbsp;
+
+                        strong <%= payment !== null? payment.get('name'):'' %>
+                    tr
+                      td
+                        strong Email: &nbsp;
+
+                        strong <%= payment !== null? payment.get('email'):'' %>
+                    tr
+                      td
+                        strong Amount: &nbsp;
+
+                        strong <%= payment !== null? payment.get('amount'):'' %>
+                    tr
+                      td
+                        strong Currency: &nbsp;
+
+                        strong <%= payment !== null? payment.get('bank_currency'):'' %>
+                    tr
+                      td
+                        strong IBAN: &nbsp;
+
+                        strong <%= payment !== null? payment.get('iban'):'' %>
+                    tr
+                      td
+                        strong SWIFT/BIC: &nbsp;
+
+                        strong <%= payment !== null? payment.get('bic_swift'):'' %>
+                    tr
+                      td
+                        strong Address: &nbsp;
+
+                        strong <%= payment !== null? payment.get('address'):'' %>
+                    tr
+                      td
+                        strong Postal Code: &nbsp;
+
+                        strong <%= payment !== null? payment.get('postalcode'):'' %>
+                    tr
+                      td
+                        strong City: &nbsp;
+
+                        strong <%= payment !== null? payment.get('city'):'' %>
+                    tr
+                      td
+                        strong Country: &nbsp;
+
+                        strong <%= payment !== null? payment.get('country'):'' %>
+                    tr
+                      td
+                        strong Beneficiary Bank Name: &nbsp;
+
+                        strong <%= payment !== null? payment.get('bank_name'):'' %>
+                    tr
+                      td
+                        strong Beneficiary Bank Address: &nbsp;
+
+                        strong <%= payment !== null? payment.get('bank_address'):'' %>
+                    tr
+                      td
+                        strong Beneficiary Bank Postal code: &nbsp;
+
+                        strong <%= payment !== null? payment.get('bank_postalcode'):'' %>
+                    tr
+                      td
+                        strong Beneficiary Bank City: &nbsp;
+
+                        strong <%= payment !== null? payment.get('bank_city'):'' %>
+                    tr
+                      td
+                        strong Beneficiary Bank Country: &nbsp;
+
+                        strong <%= payment !== null? payment.get('bank_country'):'' %>
+                    tr
+                      td
+                        strong Label: &nbsp;
+
+                        strong <%= payment !== null? payment.get('label'):'' %>
+
+                    <% } %>
+
+
+  #end-box.endconfirmation
+    button(type='button',id="cancel-button") Cancel &nbsp;
+    button(type='button',id="confirm-button") Confirm

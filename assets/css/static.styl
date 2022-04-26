@@ -1,0 +1,135 @@
+/* Terms */
+.last-updated
+  font-style italic
+  background #fafbd2
+  border-radius 2px
+  display inline-block
+
+h2
+  font-size 15px
+  margin 15px 0 5px
+  font-weight 700
+
+.page-title
+  color $text-color
+  font-family "Open Sans", helvetica, arial, sans-serif
+  margin 0 0 10px 0
+  font-size 24px
+  font-weight 500
+
+.content
+  ol
+  ul
+    padding-left 20px
+    margin 0 0 10px 0
+
+  p 
+    max-width 800px
+
+#qr-gen-bt
+  btn($teal)
+  display inline-block
+
+.settings
+  .con-body
+    padding 15px 10px
+
+.appstore-badges
+  font-size 0
+
+.appstore
+  background transparent url(CDN('/img/appstore-sprite.png')) no-repeat
+  display inline-block
+  width 143px
+  height 42px
+  overflow hidden
+  text-indent -999px
+  border-radius 3px
+  border 1px solid #000
+  margin-right 10px
+
+.appstore-apple
+  background #000 url(CDN('/img/appstore-sprite.png')) -1px -1px no-repeat
+
+.appstore-google
+  background #000 url(CDN('/img/appstore-sprite.png')) -155px -1px no-repeat
+
+#username-update-form
+  label
+    margin-right 10px
+  input
+    width 250px
+
+.content
+  .profile-group
+    reset-list()
+    clearfix()
+
+.profile
+  width 400px
+  margin 10px 40px 0px 0
+  float left
+  .portrait
+    border-radius 2px
+    overflow hidden
+    float left
+    margin 0 15px 0 0
+  h3
+    margin 0 0 3px 0
+    font-size 16px
+  h4
+    margin 0 0 5px 0
+    text-transform uppercase
+    color $lightgray
+    font-weight 400
+
+/* Api */
+.api
+  background #f9f9f9
+  padding 10px
+  display block
+  border 1px solid $border-color
+  border-radius 2px
+  margin-bottom 10px
+  label
+    &.get
+      background $blue
+      color #fff
+      font-weight bold
+      display inline-block
+      padding 5px 10px
+      border-radius 2px
+      margin-right 10px
+      text-transform uppercase
+
+.example
+  font-style italic
+
+/* Status */
+.status-legend
+  vertical-align top
+  margin-bottom 10px
+  max-width 800px
+  td
+    padding 5px 0
+  .label
+    padding-right 10px
+
+.wallet-status
+  color #fff
+  padding 3px 5px
+  text-transform uppercase
+  font-size .8em
+  font-weight 700
+  width 70px
+  display inline-block
+  text-align center
+  border-radius 2px
+  &.normal
+    background-color $teal
+  &.blocked
+    background-color $red
+  &.delayed
+    background-color #f4ca06
+  &.error
+    background-color #c9c9c9

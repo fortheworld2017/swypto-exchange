@@ -1,0 +1,114 @@
+extends ../../layout
+block content
+  #withdrawal.main-content.settings.user-area(role='main')
+    .wrapper
+      .col-aside
+        include withdrawal_list
+      .col-main
+        include ../_warnings
+        #balance.container
+          .con-header
+            h3.con-header-title
+              img(src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==", alt="icon", class="coin-icon #{wallet.currency_name.toLowerCase()}")
+              |  #{currencies[wallet.currency]} Balance
+            .header-aside
+              a(href="/trade/#{wallet.currency}/XWBC") Trade #{wallet.currency}/XWBC
+          table.trade-data
+            tr
+              th Total Balance
+              th Available Balance
+              th Held for Orders
+            tr
+              td <span data-wallet-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('total_balance'))}</span> #{wallet.currency}
+              td <span data-wallet-available-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('balance'))}</span> #{wallet.currency}
+              td <span data-wallet-hold-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('hold_balance'))}</span> #{wallet.currency}
+
+
+        // EURO WITHDRAWAL FORM
+        if wallet.currency == "USD"
+          .wrap
+            #eu-withdrawal-container.transaction-con.container(data-withdrawal-type="#{type}")
+              .con-header
+                h3.con-header-title <i class="icon-circle-arrow-up"></i> Withdraw #{currencies[wallet.currency]}
+                .header-balance <a href="#" class="amount"><span data-wallet-available-balance-id="#{wallet.id}" data-withdrawal-fee="#{wallet.getFloat('withdrawal_fee')}">#{_str.toFixed(wallet.getFloat('balance'))}</span>  #{wallet.currency}</a> Available
+              #form-container.con-body(data-withdrawal-type="#{type}")
+              #confirmation-container.con-body
+
+            #pending-transactions.container(data-type="#{type}",data-wallet-id="#{wallet.id}")
+              .con-header
+                h3.con-header-title Pending Bank Withdrawals
+              .table-wrap
+                table.trade-data
+                  tr
+                    th Date
+                    th Name/Company
+                    th IBAN
+                    th Amount
+
+                  tbody#pending-transactions-cnt(data-type="#{type}",data-wallet-id="#{wallet.id}")
+        else if wallet.currency == "XWBC"
+          //XWBC WITHDRAWAL FORM
+          .wrap
+            #xwbc-withdrawal-container.transaction-con.container(data-withdrawal-type="#{type}")
+              .con-header
+                h3.con-header-title <i class="icon-circle-arrow-up"></i> Withdraw #{currencies[wallet.currency]}
+                .header-balance <a href="#" class="amount"><span data-wallet-available-balance-id="#{wallet.id}" data-withdrawal-fee="#{wallet.getFloat('withdrawal_fee')}">#{_str.toFixed(wallet.getFloat('balance'))}</span>  #{wallet.currency}</a> Available
+              #form-container.con-body
+              #confirmation-container.con-body
+
+            #pending-transactions.container(data-type="#{type}",data-wallet-id="#{wallet.id}")
+              .con-header
+                h3.con-header-title Pending Withdrawals
+              .table-wrap
+                table.trade-data
+                  tr
+                    th Description
+                    th Amount
+                    th Confirms
+                  tbody#pending-transactions-cnt(data-type="#{type}",data-wallet-id="#{wallet.id}")
+
+        else
+          //BTC WITHDRAWAL FORM
+          .wrap
+            #btc-withdrawal-container.transaction-con.container(data-withdrawal-type="#{type}")
+              .con-header
+                h3.con-header-title <i class="icon-circle-arrow-up"></i> Withdraw #{currencies[wallet.currency]}
+                .header-balance <a href="#" class="amount"><span data-wallet-available-balance-id="#{wallet.id}" data-withdrawal-fee="#{wallet.getFloat('withdrawal_fee')}">#{_str.toFixed(wallet.getFloat('balance'))}</span>  #{wallet.currency}</a> Available
+              #form-container.con-body
+              #confirmation-container.con-body
+
+            #pending-transactions.container(data-type="#{type}",data-wallet-id="#{wallet.id}")
+              .con-header
+                h3.con-header-title Pending Withdrawals
+              .table-wrap
+                table.trade-data
+                  tr
+                    th Description
+                    th Amount
+                    th Confirms
+                  tbody#pending-transactions-cnt(data-type="#{type}",data-wallet-id="#{wallet.id}")
+
+        // Transaction History BTC/XWBC
+
+        #balance-history.balance-history.container
+          .con-header
+            h3.con-header-title Transaction History
+          .table-wrap
+            table.trade-data
+              thead
+                tr
+                  th Date
+                  th Description
+                  th Amount
+              tbody#transactions-history-cnt(data-wallet-id="#{wallet.id}")
+          // Pending Transactions common
+
+  include ../../templates/pending_transaction
+  include ../../templates/pending_withdrawal
+  include ../../templates/transaction_history
+  include ../../templates/wallet_open_order
+  include ../../templates/wallet_closed_order
+  include ../../partials/withdrawal_confirmation
+  include ../../partials/btc_form
+  include ../../partials/xwbc_form
+  include ../../partials/bank_form

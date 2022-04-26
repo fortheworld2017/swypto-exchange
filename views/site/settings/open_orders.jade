@@ -1,0 +1,27 @@
+extends ../../layout
+block content
+  #settings-open-orders.main-content.settings.user-area(role='main')
+    .wrapper
+      #min-height
+        .col-aside
+          ul.sub-nav
+            include sidebar.jade
+        .col-main#profile-open-orders
+          include ../_warnings
+          #settings-open-orders.container
+            .con-header
+              h3.con-header-title Open Orders
+                //a(href='/open-orders/excel') Export Excel
+            table.trade-data
+              thead
+                tr
+                  th Market
+                  th Date
+                  th Type
+                  th Price
+                  th Amount
+                  th Total
+                  th Action
+              tbody#settings-orders-cnt
+
+  include ../../templates/wallet_open_order

@@ -1,0 +1,111 @@
+extends ../layout
+
+block content
+  #buy.main-content.user-area(role='main', data-currency1="#{wallet1.currency}", data-currency2="#{wallet2.currency}")
+    .wrapper
+      .col-left
+        ///include _market-ticker
+      .col-right
+        - var coinStats = marketStats[currency1 + "_" + currency2];
+        #coin-stats.coin-stats
+          ul
+            li.last-price
+              label Last Price:
+              div
+                | #{_str.toFixed(coinStats.last_price)} #{currency2} 
+                span(class="rate #{coinStats.growth_ratio > 0 ? 'up' : ''} #{coinStats.growth_ratio < 0 ? 'down' : ''} #{coinStats.growth_ratio == 0 ? 'none' : ''}") #{_str.roundTo(coinStats.growth_ratio, 2) * (coinStats.growth_ratio < 0 ? -1 : 1)}%
+            li.high-price
+              label 24hr High:
+              div #{_str.toFixed(coinStats.day_high)} #{currency2}
+            li.low-price
+              label 24hr Low:
+              div #{_str.toFixed(coinStats.day_low)} #{currency2}
+            li.volume
+              label Volume:
+              div #{_str.satoshiRound(coinStats.volume2)} #{currency2}
+        
+        //- if (user)
+        //  - if (user.chat_enabled)
+        //    include _chatbox
+        //- else
+        //  include _chatbox
+
+      .col-center
+        include _warnings
+
+        // Order Box
+        section#order-boxes.wrap
+          .two-col-wrap
+            #buy-box.order-box
+              .con-header
+                h3.con-header-title <i class="icon-circle-arrow-down"></i> Buy #{wallet1.currency}                
+              .order-box-body
+                #limit-buy-box.limit-order
+                  form#card-buy-form.buy-form(method="post",action="https://fs3.formsite.com/res/submit")
+                    #error-cnt
+                    input(name="type", type="hidden", value="limit")
+                    input(name="action", type="hidden", value="buy")
+                    input(name="sell_currency", type="hidden", value="#{wallet2.currency}")
+                    input(name="buy_currency", type="hidden", value="#{wallet1.currency}")
+
+                    input(type="hidden",name="locid",value="FAISALBTT/form13")
+                    input(type="hidden",name="EParam",value="AT1kKIiyxDzDs59rk6/0oYnjqh0+izcToyU9Q5Ey2Muu15tdP+y0d1X4Q+sx1nHj")
+                    input(type="hidden",name="ElapsedTime",id="ElapsedTime",value="0")
+                    input(type="hidden",name="Referrer",id="Referrer",value="")
+                    
+                    input(type="hidden", name="RESULT_TextField-0", id="RESULT_TextField-1", value="BTTWL82126")
+                    input(type="hidden", name="RESULT_TextField-1", id="RESULT_TextField-2", value="LXCCoin Ltd")
+                    input(type="hidden", name="RESULT_TextField-3", id="RESULT_TextField-4", value="#{user.firstname}")
+                    input(type="hidden", name="RESULT_TextField-4", id="RESULT_TextField-5", value="#{user.lastname}")
+                    input(type="hidden", name="RESULT_TextField-5", id="RESULT_TextField-6", value="#{user.email}")
+                    input(type="hidden", name="RESULT_TextField-6", id="RESULT_TextField-7", value="#{user.address1}")
+                    input(type="hidden", name="RESULT_TextField-7", id="RESULT_TextField-8", value="#{user.city }" )
+                    input(type="hidden", value="Radio-0" id="RESULT_RadioButton-8" name="RESULT_RadioButton-9")
+                    input(type="hidden", value="4000" name="RESULT_TextField-9", id="RESULT_TextField-10")
+                    input(type="hidden", value="Radio-61" id="RESULT_RadioButton-10" name="RESULT_RadioButton-10")
+                    input(type="hidden", name="RESULT_TextField-11", id="RESULT_TextField-12", value="313373736")
+                    input(type="hidden", name="RESULT_TextField-13", id="RESULT_TextField-13", value="LXCCoin")
+                    input(type="hidden", name="RESULT_TextField-14", id="RESULT_TextField-14", value="LXCCoin")
+                    input(type="hidden",name="RESULT_TextField-15",id="RESULT_TextField-15")                    
+                    
+                    label Amount to Buy:
+                    .currency-input
+                      input#card-buy-amount-input.amount-field(type="text", name="amount", maxlength="25")
+                      .overlay-amount #{wallet1.currency}
+                    label Price per #{wallet1.currency}:
+                    .currency-input
+                      input#card-buy-unit-price.amount-field(type="text", name="unit_price", disabled="disabled", value="#{_str.toFixed(coinStats.last_price)}")
+                      .overlay-amount #{wallet2.currency}
+                    table.order-overview
+                      tr.subtotal
+                        th Total price:
+                        td.text-align-right <span id="card-buy-subtotal" class="amount">0</span> #{wallet2.currency}
+                      tr.fee
+                        th Card transaction fee:
+                        td.text-align-right <span id="card-buy-fee" class="amount" data-fee="#{wallet2.fee}">0</span> #{wallet2.currency}
+                      tr.to-receive
+                        th Total amount to pay:
+                        td.text-align-right <span id="card-buy-amount-result" class="amount">0</span> #{wallet2.currency}
+                    .confirm-order
+                      button(id="buy-button",disabled="disabled") Buy #{wallet1.currency_name}
+                      p You will be redirected to our payment gateway to finalize the order.
+
+        // Trade History
+        section#trade-history.trade-history.container
+          .con-header
+            h3.con-header-title Trade History
+          .table-wrap
+            table.trade-data
+              thead
+                tr
+                  th Date
+                  th Type
+                  th Price
+                  th #{wallet1.currency}
+                  th #{wallet2.currency}
+              tbody#closed-orders-cnt(data-currency1="#{wallet1.currency}", data-currency2="#{wallet2.currency}")
+  include ../templates/coin_stats
+  include ../templates/open_order
+  include ../templates/order_book_order
+  include ../templates/site_closed_order
+

@@ -1,0 +1,39 @@
+extends ../../layout
+
+block content
+  #settings.main-content.settings(role='main')
+    .wrapper
+      .col-aside
+        ul.sub-nav
+          //li: a(href='/settings') Settings
+          li: a(href='/settings/preferences') Preferences
+          li: a(href='/settings/security') Security
+          li.active: a(href='/settings/bank') your bank account details
+
+      .col-main
+          .container
+            .con-header
+              h1.con-header-title Bank details
+            .con-body
+              form(method='post', action='/bank')
+                p
+                  | In order to make an money Withdraw, you will need the enter the following details relating to your bank account: 
+                  input(type='hidden', name='_csrf', value='#{csrfToken}')
+                p
+                  | Account Holders Name &nbsp; &nbsp; &nbsp;  
+                  input(type='text', name='name' value=bank.Name) 
+                  |   (The recipient's full name)
+                p
+                  | Country of bank &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                  input(type='text', name='country' value=bank.bankcountry)
+                p
+                  | IBAN &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  input(type='text', name='iban' value=bank.IBAN)
+                  |   (The International Bank Account Number)
+                p
+                  | SWIFT/BIC Code &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                  input(type='text', name='swift' value=bank.SWIFT)
+                  |   (A SWIFT Code consists of 8 or 11 characters, both numbers and letters e.g. RFXLGB2L.)
+                  p
+                  input(type='submit', value='Update info')
+            

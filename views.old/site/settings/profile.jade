@@ -1,0 +1,43 @@
+extends ../../layout
+block content
+    #settings.main-content.settings(role='main')
+        .wrapper
+            include sidebar.jade
+            .col-main
+                .container
+                    .con-header
+                        h1.con-header-title Profile Details &nbsp;
+                          a(class="btn" href="profile/edit").
+                            Edit
+                    .con-body
+                      table.trade-data
+                        tr
+                          th Email
+                          th #{user.email}
+                        tr
+                          th Name:
+                          th #{user.name}
+                        tr
+                          th Address 1:
+                          th #{user.address1}
+                        tr
+                          th Address 2:
+                          th #{user.address2}
+                        tr
+                          th Postcode
+                          th #{user.postcode}
+                        tr
+                          th City
+                          th #{user.city}
+                        tr
+                          th Country
+                          th #{user.country}
+                        tr
+                          th Phone
+                          th #{user.phone}
+                        tr
+                          th Skype ID
+                          th #{user.skypeId}
+                        tr
+                          th Alternative Email
+                          th #{user.alternate_email}

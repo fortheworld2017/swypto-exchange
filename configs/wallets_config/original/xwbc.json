@@ -1,0 +1,19 @@
+{
+  "client": {
+    "host": "localhost",
+    "port": 20801,
+    "user": "Hareendranath",
+    "pass": "hareendranath@dollar123",
+    "ssl": false,
+    "sslStrict": false,
+    "sslCa": false
+  },
+  "wallet": {
+    "address": "P8AJv3WrgxWkJz3Ek2R6LeywVhSHbis6CD",
+    "account": "LXCbank",
+    "passphrase": ""
+  },
+  "confirmations": 3,
+  "transaction_fee": 0.0001,
+  "currency": "XWBC"
+}

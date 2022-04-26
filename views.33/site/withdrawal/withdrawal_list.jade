@@ -1,0 +1,11 @@
+.fund-list.container
+  .con-header
+    .con-header-title Wallets
+  - var availableCurrencies = [];
+  ul.fund-nav
+    li(class="#{ page=='withdrawal-overview' ? 'active' : ''}"): a(href='/withdrawal') Overview
+    - console.log(type)  
+    li(class="#{type=='Inter' ? 'active' : ''}"): a(href='/withdrawal/Bank/Inter') Withdraw to Bank
+    li(class="#{type=='BTC' ? 'active' : ''}"): a(href='/withdrawal/Currency/BTC') Bitcoin transfer
+    li(class="#{type=='XWBC' ? 'active' : ''}"): a(href='/withdrawal/Currency/XWBC') XWBC LXCCoin transfer
+ 

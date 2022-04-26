@@ -1,0 +1,177 @@
+extends ../layout
+
+block content
+  #trade.main-content.user-area(role='main', data-currency1="#{wallet1.currency}", data-currency2="#{wallet2.currency}")
+    .wrapper
+      .col-left
+        include _market-ticker
+      .col-right
+        - var coinStats = marketStats[currency1 + "_" + currency2];
+        #coin-stats.coin-stats
+          ul
+            li.last-price
+              label Last Price:
+              div
+                | #{_str.toFixed(coinStats.last_price)} #{currency2} 
+                span(class="rate #{coinStats.growth_ratio > 0 ? 'up' : ''} #{coinStats.growth_ratio < 0 ? 'down' : ''} #{coinStats.growth_ratio == 0 ? 'none' : ''}") #{_str.roundTo(coinStats.growth_ratio, 2) * (coinStats.growth_ratio < 0 ? -1 : 1)}%
+            li.high-price
+              label 24hr High:
+              div #{_str.toFixed(coinStats.day_high)} #{currency2}
+            li.low-price
+              label 24hr Low:
+              div #{_str.toFixed(coinStats.day_low)} #{currency2}
+            li.volume
+              label Volume:
+              div #{_str.satoshiRound(coinStats.volume2)} #{currency2}
+        
+        //- if (user)
+        //  - if (user.chat_enabled)
+        //    include _chatbox
+        //- else
+        //  include _chatbox
+
+      .col-center
+        include _warnings
+        .chart.container
+          h1.market-title
+            span.abbreviation
+              img(src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==", alt="icon", class="coin-icon #{wallet1.currency_name.toLowerCase()}")
+              | #{wallet1.currency}/#{wallet2.currency}
+            <strong>#{wallet1.currency_name}</strong> to <strong>#{wallet2.currency_name}</strong> Exchange
+          #trade-chart.graph
+
+        // Order Box
+        section#order-boxes.wrap
+          .two-col-wrap
+            #buy-box.order-box
+              .con-header
+                h3.con-header-title <i class="icon-circle-arrow-down"></i> Buy #{wallet1.currency}
+                .header-balance <a href="#" class="amount" data-amount="#{_str.toFixed(wallet2.getFloat('balance'))}" data-type="buy"><span data-wallet-available-balance-id="#{wallet2.id}">#{_str.toFixed(wallet2.getFloat('balance'))}</span> #{wallet2.currency}</a> Available
+              .order-box-body
+                #limit-buy-box.limit-order
+                  form#limit-buy-form.order-form
+                    #error-cnt
+                    input(name="type", type="hidden", value="limit")
+                    input(name="action", type="hidden", value="buy")
+                    input(name="sell_currency", type="hidden", value="#{wallet2.currency}")
+                    input(name="buy_currency", type="hidden", value="#{wallet1.currency}")
+                    label Amount to Buy:
+                    .currency-input
+                      input#buy-amount-input.amount-field(type="text", name="amount", maxlength="25")
+                      .overlay-amount #{wallet1.currency}
+                    label Price per #{wallet1.currency}:
+                    .currency-input
+                      input#buy-unit-price.amount-field(type="text", name="unit_price", value="#{_str.toFixed(coinStats.last_price)}")
+                      .overlay-amount #{wallet2.currency}
+                    table.order-overview
+                      tr.subtotal
+                        th Total to spend:
+                        td <span id="buy-subtotal" class="amount">0</span> #{wallet2.currency}
+                      tr.fee
+                        th Fee:
+                        td <span id="buy-fee" class="amount" data-fee="#{wallet1.fee}">0</span> #{wallet1.currency}
+                      tr.to-receive
+                        th Approx. #{wallet1.currency} to receive:
+                        td <span id="buy-amount-result" class="amount">0</span> #{wallet1.currency}
+                    .confirm-order
+                      button Buy #{wallet1.currency_name}
+
+          .two-col-wrap
+            #sell-box.order-box
+              .con-header
+                h3.con-header-title <i class="icon-circle-arrow-up"></i> Sell #{wallet1.currency}
+                .header-balance <a href="#" class="amount" data-amount="#{_str.toFixed(wallet1.getFloat('balance'))}" data-type="sell"><span data-wallet-available-balance-id="#{wallet1.id}">#{_str.toFixed(wallet1.getFloat('balance'))}</span> #{wallet1.currency}</a> Available
+              .order-box-body
+                #limit-sell-box.limit-order
+                  form#limit-sell-form.order-form
+                    #error-cnt
+                    input(name="type", type="hidden", value="limit")
+                    input(name="action", type="hidden", value="sell")
+                    input(name="sell_currency", type="hidden", value="#{wallet1.currency}")
+                    input(name="buy_currency", type="hidden", value="#{wallet2.currency}")
+                    label Amount to Sell:
+                    .currency-input
+                      input#sell-amount-input.amount-field(type="text", name="amount", maxlength="25")
+                      .overlay-amount #{wallet1.currency}
+                    label Price per #{wallet1.currency}:
+                    .currency-input
+                      input#sell-unit-price.amount-field(type="text", name="unit_price", value="#{_str.toFixed(coinStats.last_price)}")
+                      .overlay-amount #{wallet2.currency}
+                    table.order-overview
+                      tr.subtotal 
+                        th Total to receive:
+                        td <span id="sell-subtotal" class="amount">0</span> #{wallet2.currency}
+                      tr.fee
+                        th Fee:
+                        td <span id="sell-fee" class="amount" data-fee="#{wallet2.fee}">0</span> #{wallet2.currency}
+                      tr.to-receive
+                        th Approx. #{wallet2.currency} to receive:
+                        td <span id="sell-amount-result" class="amount">0</span> #{wallet2.currency}
+                    .confirm-order
+                      button Sell #{wallet1.currency_name}
+
+        // Open Orders
+        - if (user)
+          section#open-orders.container
+            .con-header
+              h3.con-header-title Open Orders
+            .table-wrap
+              table.trade-data
+                thead
+                  tr
+                    th Date
+                    th Type
+                    th Price
+                    th #{wallet1.currency}
+                    th #{wallet2.currency}
+                    th Action
+                tbody#open-orders-cnt(data-currency1="#{wallet1.currency}", data-currency2="#{wallet2.currency}")
+        
+        // Order Book
+        section#order-book.wrap
+          .two-col-wrap
+            #sell-orders.order-book
+              .con-header
+                h3.con-header-title Sell Orders
+                .order-book-total Total: <span id="order-book-sell-volume-total">0</span> #{wallet1.currency}
+              .table-wrap
+                table.trade-data
+                  thead
+                    tr
+                      th Price
+                      th #{wallet1.currency}
+                      th #{wallet2.currency}
+                  tbody#order-book-sell-cnt(data-currency1="#{wallet1.currency}", data-currency2="#{wallet2.currency}")
+
+          .two-col-wrap
+            #buy-orders.order-book
+              .con-header
+                h3.con-header-title Buy Orders
+                .order-book-total Total: <span id="order-book-buy-volume-total">0</span> #{wallet1.currency}
+              table.trade-data
+                thead
+                  tr
+                    th Price
+                    th #{wallet1.currency}
+                    th #{wallet2.currency}
+                tbody#order-book-buy-cnt(data-currency1="#{wallet1.currency}", data-currency2="#{wallet2.currency}")
+
+        // Trade History
+        section#trade-history.trade-history.container
+          .con-header
+            h3.con-header-title Trade History
+          .table-wrap
+            table.trade-data
+              thead
+                tr
+                  th Date
+                  th Type
+                  th Price
+                  th #{wallet1.currency}
+                  th #{wallet2.currency}
+              tbody#closed-orders-cnt(data-currency1="#{wallet1.currency}", data-currency2="#{wallet2.currency}")
+  include ../templates/coin_stats
+  include ../templates/open_order
+  include ../templates/order_book_order
+  include ../templates/site_closed_order
+

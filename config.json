@@ -1,0 +1,155 @@
+{
+  "development" : {
+    "mysql": {
+      "db": "swypto_production",
+      "user": "swypto",
+      "password": "dVr9BfrGuuWnmmXi",
+      "port": 3306,
+      "host": "10.128.0.5",
+      "logging": true
+    },
+    "queue": {
+      "db": "swypto_queue_production",
+      "user": "swypto",
+      "password": "dVr9BfrGuuWnmmXi",
+      "port": 3306,
+      "host": "10.128.0.5",
+      "logging": true
+    },
+    "redis": {
+      "db": "coinnext_auth_dev"
+    },
+    "slackalerts": {
+      "enabled": false,
+      "domain": "coinnext",
+      "token": "25Kj3veGYbD8A4ZoHDynWCxc",
+      "channel": "#alerts"
+    },
+    "session": {
+      "cookie_secret": "secretkey",
+      "session_key": "cnxweb",
+      "cookie": {
+        "maxAge": 43200000,
+        "path": "/",
+        "httpOnly": true,
+        "secure": false
+      },
+      "admin": {
+        "cookie_secret": "adminsecretkey",
+        "session_key": "cnxadmin",
+        "cookie": {
+          "maxAge": 2592000000,
+          "path": "/",
+          "httpOnly": true,
+          "secure": false
+        }
+      }
+    },
+    "salt": "coinnextsecret#1999",
+    "emailer": {
+      "enabled": true,
+      "host": "http://www.swypto.exchange",
+      "from": "Swypto Exchange <service@swypto.exchange>",
+      "transport": {
+        "host": "mail.swypto.exchange",
+        "port": 587,
+        "secureConnection": true,
+        "auth": {
+          "user": "service@swypto.exchange",
+          "pass": "lxc@1234"
+        },
+        "debug": true
+      }
+    },
+    "wallets": {
+    },
+    "app_host": "localhost:5000",
+    "wallets_host": "localhost:6000",
+    "engine_api_host": "http://localhost:7000",
+    "users": {
+      "hostname": "http://www.swypto.exchange",
+      "events_endpoint": "http://www.swypto.exchange/user_event"
+    },
+    "recaptcha": {
+      "public_key": "6Ld2Av8SAAAAACKuB8Y1HWmuumxxWcXEcmtOgXQ_",
+      "private_key": "6Ld2Av8SAAAAAHD84LD9twZ3BUocd13LlfA6cnVT"
+    }
+  },
+  "production" : {
+    "mysql": {
+      "db": "swypto_production_new",
+      "user": "swypto",
+      "password": "dVr9BfrGuuWnmmXi",
+      "port": 3306,
+      "host": "10.128.0.5",
+      "logging": true
+    },
+    "queue": {
+      "db": "swypto_queue_production_new",
+      "user": "swypto",
+      "password": "dVr9BfrGuuWnmmXi",
+      "port": 3306,
+      "host": "10.128.0.5",
+      "logging": true
+    },
+    "redis": {
+      "db": "coinnext_auth_production_new"
+    },
+    "slackalerts": {
+      "enabled": false,
+      "domain": "coinnext",
+      "token": "25Kj3veGYbD8A4ZoHDynWCxc",
+      "channel": "#alerts"
+    },
+    "session": {
+      "cookie_secret": "secretkey",
+      "session_key": "cnxweb",
+      "cookie": {
+        "maxAge": 43200000,
+        "path": "/",
+        "httpOnly": true,
+        "secure": false
+      },
+      "admin": {
+        "cookie_secret": "adminsecretkey",
+        "session_key": "cnxadmin",
+        "cookie": {
+          "maxAge": 2592000000,
+          "path": "/",
+          "httpOnly": true,
+          "secure": false
+        }
+      }
+    },
+      "salt": "coinnextsecret#1999",
+      "emailer": {
+	"enabled": true,
+        "host": "http://www.swypto.exchange",
+        "from": "Swypto Exchange <service@swypto.exchange>",
+	"transport": {
+	   "host": "in-v3.mailjet.com",
+	   "port": 2525,
+	   "secureConnection": false,
+	   "auth": {
+	          "user": "5839c9b690f86b547558dc740afb2933",
+	          "pass": "4dd7a29ce04aae0d43b9dcabe112255a"
+	   },
+	   "debug": true
+	    }
+    },
+    "wallets": {
+    },
+    "app_host": "localhost:5000",
+    "wallets_host": "localhost:6000",
+    "engine_api_host": "http://localhost:7000",
+    "users": {
+      "hostname": "http://www.swypto.exchange",
+      "events_endpoint": "http://www.swypto.exchange/user_event"
+    },
+    "recaptcha": {
+      "public_key": "6Ld2Av8SAAAAACKuB8Y1HWmuumxxWcXEcmtOgXQ_",
+      "private_key": "6Ld2Av8SAAAAAHD84LD9twZ3BUocd13LlfA6cnVT"
+    }
+  }
+}
+

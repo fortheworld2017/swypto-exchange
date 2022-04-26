@@ -1,0 +1,20 @@
+extends ../../layout
+
+block content
+  #notification-settings.main-content.settings.user-area(role='main')
+    .wrapper
+      #min-height
+        .col-aside
+          ul.sub-nav
+            include sidebar.jade
+        .col-main
+          include ../_warnings
+          .container
+            .con-header
+              h1.con-header-title Notifications
+            .con-body
+              fieldset.checkbox
+                label(for="email_auth_enabled")
+                  input(type="checkbox" name="email_auth_enabled" id="email_auth_enabled" checked=(user.email_auth_enabled))
+                  | Email on authentication
+

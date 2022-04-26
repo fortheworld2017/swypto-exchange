@@ -1,0 +1,19 @@
+{
+  "client": {
+    "host": "10.131.219.88",
+    "port": 20801,
+    "user": "bitcoinrpc",
+    "pass": "1bnkcB1453tAtZSBBZnbV9oGMQTN8JXaq6TtxFPjhAVq",
+    "ssl": false,
+    "sslStrict": false,
+    "sslCa": false
+  },
+  "wallet": {
+ "address": "P5VmSt4mQp49sKjtgBUeXVE6Q9rXaLpDDj",
+    "account": "LXCbank",
+    "passphrase": ""
+  },
+  "confirmations": 3,
+  "transaction_fee": 0.0001,
+  "currency": "EURO"
+}

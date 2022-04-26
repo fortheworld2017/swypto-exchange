@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+  .main-content(role='main')
+    .wrapper
+      .one-col.content
+        h1.page-title Fees
+
+        h2 Trading
+        .fees.container
+          table.trade-data
+            tr
+              th Buying
+              td <b>FREE</b> for 90 days – thereafter <b>0.2%</b>
+            tr
+              th Selling
+              td <b>FREE</b> for 90 days – thereafter <b>0.2%</b>
+
+        h2 Deposit
+        .fees.container
+          table.trade-data
+            tr
+              th Coins
+              td FREE
+                sup *
+            tr
+              th Cash
+              td FREE
+                sup *
+        p
+          sup *
+            | Transfer fee from own bank or coin wallet may apply.
+
+
+
+        h2 Withdraw
+        p A transaction fee is added to ensure swift processing by the network.
+        .fees.container
+          table.trade-data
+            tr
+              th BTC
+              td 0.0002
+            tr
+              th XWBC
+              td 2
+
+        p All fees are subject to change. Any fee change will be announced on this page..
+          

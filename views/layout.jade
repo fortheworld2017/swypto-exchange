@@ -1,0 +1,27 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+
+    title #{title ? title : 'Coinnext - Cryptocurrency Exchange'}
+    
+    meta(name='description', content='Coinnext is a cryptocurrency exchange where you can trade a wide range of coins fast and securely.')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    != css('main')
+
+    include _config
+
+  body
+    include site/_header
+    block content
+    include site/_footer
+
+    include templates/market_ticker
+    include templates/chat_message
+
+    != js('application')
+
+    - if (process.env.NODE_ENV === "production")
+      include _analytics

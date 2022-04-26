@@ -1,0 +1,157 @@
+extends ../layout
+
+block content
+  .main-content(role='main')
+    .hero-unit
+      h1.taglinebig SWYPTO
+      h1.tagline The Fast, Secure and Reliable Cryptocurrency Exchange
+      - if (!user)
+        a(href='/signup').bord_but Get Started Now
+  #bg_full_white
+      #features
+        .wrapper.forcover
+          h2.top_text OUR SPECIALTIES
+          //p.tagline Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          ul.feature-list
+            li.feature-item
+              img(src="/img/hero/coins3.png", alt="Easy Trading").feature-img
+              .feature-text Easy Trading
+            li.feature-item
+              img(src="/img/hero/safe.svg", alt="Bank-Grade Security").feature-img
+              .feature-text Bank-Grade Security
+            li.feature-item
+              img(src="/img/hero/save.svg", alt="Low Fees").feature-img
+              .feature-text Low Fees
+            li.feature-item
+              img(src="/img/hero/support.svg", alt="Fast Support").feature-img
+              .feature-text Fast Support
+      #contentgrey
+        .wrapper.forcover_content    
+          h2.top_text.market ALL MARKETS
+          section#market-list.container
+            table.trade-data
+              tr
+                th Market
+                th Coin Name
+                th Last Price
+                th Volume (24h)
+                th Change (24h)
+              - each info, type in marketStats
+                - if (info.label)
+                  tr
+                    td <a href="/trade/#{type.replace("_", "/")}">#{type.replace("_", "/")}</a>
+                    td #{currencies[info.label]}
+                    - if (info.status === "disabled")
+                      td ON HOLD
+                    - else
+                      td #{_str.toFixed(info.last_price)}
+                    td #{_str.toFixed(info.volume1)} #{type.split("_")[0]}
+                    -var growthRatio = _str.roundTo(info.growth_ratio, 2)
+                    td(class="rate #{growthRatio > 0 ? 'up' : ''} #{growthRatio < 0 ? 'down' : ''} #{growthRatio == 0 ? 'none' : ''}") #{_str.toFixed(Math.abs(growthRatio), 2)}%    
+      #contentwhite
+        .wrapper.two_blocks
+          .left_block    
+            h2.top_text.XWBC XWBC MARKETS
+            //p.tagline Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            include _market-ticker
+          .right_block    
+            h2.top_text.SALES TOTAL SALES
+            //p.tagline Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            #coin-stats.coin-stats
+              - var totalVolume = 0;
+              - each info, type in marketStats
+                - if (info.label) totalVolume = totalVolume + info.volume2
+              .con-header
+                h2.con-header-title TOTAL SALES
+              ul
+                li.volume
+                  label Total Volume:
+                  div #{_str.toFixed(totalVolume, 4)} xWBC
+                li.trades
+                  label Total Trades:
+                  div #{tradesCount}
+
+
+      #contentgrey 
+        .wrapper.forcover_content
+          h2.top_text.news Announcements
+          .induvidual_news_section
+            .left_caption
+              h3 Press release about lxccoin
+              span.date 01/03/2015
+            .right_news_details   
+              h3.newsdetails  StrategaBiz Announces Execution of Conditional Agreement to Purchase CryptoCorum, the Originator of the Cryptocurrency LXCcoin 
+              p.newsdetails The CryptoCorum Ltd. Group, which consists of CryptoCorum Ltd. (Malta holding company) and its wholly owned subsidiaries, Prostaker (Malta limited company) and LXCcoin (United Kingdom limited company),   is the developer and promulgator of the crypto coin LXCCoin (ticker: XWBC), a virtual wallet solution, and a number of associated strategic crypto currency technology platforms.  
+              a(href='http://www.lxccoin.com/strategabiz-buys-lxccoin/').more More
+          .induvidual_news_section
+            .left_caption
+              h3 How to buy xWBC coins
+              span.date 02/03/15
+            .right_news_details   
+              h3.newsdetails   How to buy xWBC coins
+              p.newsdetails
+                | Secure you LXCCoin purchase today by filling out the following information.
+                a(href='http://www.lxccoin.com/buy-lxccoin-today/').more More
+    //-
+      .wrapper
+        .col-left
+          include _market-ticker
+        .col-right
+          #coin-stats.coin-stats
+            - var totalVolume = 0;
+            - each info, type in marketStats
+              - if (info.label) totalVolume = totalVolume + info.volume2
+             ul
+              li.volume
+                label Total Volume:
+                  div #{_str.toFixed(totalVolume, 4)} xWBC
+              li.trades
+                label Total Trades:
+                  div #{tradesCount}
+
+              //- if (user)
+              //  - if (user.chat_enabled)
+              //    include _chatbox
+              //- else
+              //  include _chatbox
+              // Twitter Widget
+              //<a class="twitter-timeline" href="https://twitter.com/lxccoin" data-widget-id="572010341488680960" data-border-color="#dcdfe3">Tweets by @lxccoin</a>
+              //<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      
+        .col-center
+          include _warnings
+
+          section#announcements.container
+            .con-header
+              h3.con-header-title Announcements
+            ul.announcement-list
+              li.announcement-item
+                .time 01/03/15
+                a(href="http://www.lxccoin.com/strategabiz-announces-execution-of-conditional-agreement-to-purchase-cryptocorum-the-originator-of-the-cryptocurrency-lxccoin/", target="_blank").title Press release about lxccoin
+            ul.announcement-list
+              li.announcement-item
+                .time 02/03/15
+                a(href="http://www.lxccoin.com/faq/#toggle-id-1", target="_blank").title How to buy xWBC coins
+
+          section#market-list.container
+            .con-header
+              h3.con-header-title All Markets
+            table.trade-data
+              tr
+                th Market
+                th Coin Name
+                th Last Price
+                th Volume (24h)
+                th Change (24h)
+              - each info, type in marketStats
+                - if (info.label)
+                  tr
+                    td <a href="/trade/#{type.replace("_", "/")}">#{type.replace("_", "/")}</a>
+                    td #{currencies[info.label]}
+                    - if (info.status === "disabled")
+                      td ON HOLD
+                    - else
+                      td #{_str.toFixed(info.last_price)}
+                    td #{_str.toFixed(info.volume1)} #{type.split("_")[0]}
+                    -var growthRatio = _str.roundTo(info.growth_ratio, 2)
+                    td(class="rate #{growthRatio > 0 ? 'up' : ''} #{growthRatio < 0 ? 'down' : ''} #{growthRatio == 0 ? 'none' : ''}") #{_str.toFixed(Math.abs(growthRatio), 2)}%

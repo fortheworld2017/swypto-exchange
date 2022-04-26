@@ -1,0 +1,19 @@
+{
+  "client": {
+    "host": "10.128.0.17",
+    "port": 20801,
+    "user": "bitcoinrpc",
+    "pass": "BRUPJDCGP4kzgD6FwKFpsoksQ36ue8wDBuf6qp3fcN2D",
+    "ssl": false,
+    "sslStrict": false,
+    "sslCa": false
+  },
+  "wallet": {
+    "address": "NjPh18TECSSPx7dB2RoEbVMLb5ubwuoGri",
+    "account": "LXCCOIN",
+    "passphrase": ""
+  },
+  "confirmations": 0,
+  "transaction_fee": 0.0001,
+  "currency": "XWBC"
+}

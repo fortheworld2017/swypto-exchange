@@ -1,0 +1,61 @@
+extends ../layout
+
+block content
+  #finances.main-content.finances.user-area(role='main')
+    .wrapper
+      #min-height
+        .col-aside
+          include funds/_funds_list
+
+        .col-main#finances-cnt
+          include _warnings
+          #wallets.container
+            .con-header
+              h3.con-header-title Balances
+            table.trade-data
+              tr
+                th Currency
+                th Total Balance
+                th Available Balance
+                th Held for Orders
+              - each wallet in wallets
+                tr.wallet(data-id="#{wallet._id}")
+                  td <a href="/funds/#{wallet.currency}">#{wallet.currency}</a>
+                  td <span data-wallet-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('total_balance'))}</span> #{wallet.currency}
+                  td <span data-wallet-available-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('balance'))}</span> #{wallet.currency}
+                  td <span data-wallet-hold-balance-id="#{wallet.id}">#{_str.toFixed(wallet.getFloat('hold_balance'))}</span> #{wallet.currency}
+
+          // Open Orders (All)
+          #open-orders.container
+            .con-header
+              h3.con-header-title Open Orders
+            table.trade-data
+              thead
+                tr
+                  th Market
+                  th Date
+                  th Type
+                  th Price
+                  th Amount
+                  th Total
+                  th Action
+              tbody#overview-open-orders-cnt
+
+          // Order History
+          #order-history.order-history.container
+            .con-header
+              h3.con-header-title Order History
+            .table-wrap
+              table.trade-data
+                thead
+                  tr
+                    th Market
+                    th Date
+                    th Type
+                    th Price
+                    th Amount
+                    th Total
+                tbody#overview-closed-orders-cnt
+
+  include ../templates/wallet_open_order
+  include ../templates/wallet_closed_order

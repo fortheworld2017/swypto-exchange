@@ -1,0 +1,18 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+
+    title #{title ? title : 'Unrecoverable Error - Swypto - Cryptocurrency Exchange'}
+    
+    meta(name='description', content='Swypto is a cryptocurrency exchange where you can trade a wide range of coins fast and securely.')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    != css('errors')
+
+  body
+    block content
+
+    - if (process.env.NODE_ENV === "production")
+      include _analytics

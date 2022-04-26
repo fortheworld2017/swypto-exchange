@@ -1,0 +1,93 @@
+extends ../../layout
+
+block content
+  #settings.main-content.settings(role='main')
+    .wrapper
+      .col-aside
+        ul.sub-nav
+          //li: a(href='/settings') Settings
+          li: a(href='/settings/preferences') Preferences
+          li.active: a(href='/settings/security') Security
+
+      .col-main
+        .container
+          .con-header
+            h1.con-header-title Change Password
+          .con-body
+            form#set-new-pass-form(action="/set-new-password", method="post")
+              #error-cnt
+              #notice-cnt
+              fieldset
+                .input-prepend
+                  span.add-on
+                    i.icon-lock
+                  input(name="password", type="password", placeholder="Current password")
+              fieldset
+                .input-prepend
+                  span.add-on
+                    i.icon-lock
+                  input#set-new-pass(name="new_password", type="password", placeholder="New password")
+              fieldset
+                .input-prepend
+                  span.add-on
+                    i.icon-lock
+                  input(name="repeat_new_password", type="password", placeholder="Confirm password")
+              fieldset.actions
+                input(type="submit" value="Change Password").btn
+                span 
+                  a(href="/send-password") Lost your password?
+        
+        .container
+          .con-header
+            h1.con-header-title Two-factor authentication
+          .con-body
+            - if (googleToken)
+              p.gauth-status Two-factor authentication is currently enabled.
+              #gauth-cnt
+                form#gauth-confirm-disable-form
+                  fieldset
+                    .input-prepend
+                      span.add-on
+                        i.icon-lock
+                      input(name="gauth_pass", type="text", placeholder="Verification code")
+                  fieldset.actions
+                    button#qr-disable-bt.btn(type="submit") Disable Google Authenticator
+            - else
+              p 
+                | We offer Google Authenticator as an extra security layer when logging in.
+                | <br /> Enabling two-factor authentication greatly increases the security of your account.
+              p.appstore-badges
+                a(href="https://itunes.apple.com/app/google-authenticator/id388497605?mt=8").appstore.appstore-apple
+                  | Download on the App Store
+                a(href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2").appstore.appstore-google
+                  | Get it on Google Play
+              p 
+                a(href="https://support.google.com/accounts/answer/1066447?hl=en", target="_blank", rel="_nofollow")
+                  | Check here for instructions on how to install Google Authenticator on your device.
+              #gauth-cnt.hidden
+                a#gauth-link.qr-code(href="", target="_blank")
+                  img#gauth-qr(src="")
+                .gauth-info
+                  .key
+                    label.gauth-label Your Authentication Key: <span id="gauth-key"></span>
+                  form#gauth-confirm-enable-form
+                    fieldset
+                      label.gauth-label Insert Your Authentication Code:
+                      input(name="gauth_pass", type="text", placeholder="Verification code").gauth-input
+                    fieldset.actions
+                      button.btn(type="submit") Enable Google Authenticator 
+              a#qr-gen-bt(href="/generate_gauth") Enable Google Authenticator
+        
+        #auth-stats.container
+          .con-header
+            h1.con-header-title Authorization history
+          .table-wrap
+            table.trade-data
+              tr
+                th Date
+                th IP Address
+              - each stat in authStats
+                tr
+                  td #{stat.created_at.toFormat("DD/MM/YY HH24:MI")}
+                  td #{stat.ip}
+                  

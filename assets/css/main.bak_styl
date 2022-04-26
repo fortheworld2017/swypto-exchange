@@ -1,0 +1,343 @@
+use("./plugins/cdn.js")
+
+@import 'vendor/normalize.css'
+@import 'vendor/jquery.jgrowl.css'
+//@import 'vendor/bootstrap.css'
+@import 'font'
+@import 'mixins'
+
+$red = #da4444
+$teal = #3eae5f
+$blue = #549cd5
+$darkblue = #14294e
+$lightgray = #a7abb1
+$border-color = #d6dae1
+$bgcolor = #f6f7f8
+
+$text-color = #2d3441
+
+@import 'framework'
+
+html
+body
+  height 100%
+
+body
+  min-width 1000px
+  color $text-color
+  -webkit-font-smoothing antialiased
+  font 14px "Helvetica Neue", Helvetica, Arial, sans-serif
+
+::-moz-selection
+  color #fff
+  background $blue
+  text-shadow none
+
+::selection
+  color #fff
+  background $blue
+  text-shadow none
+
+audio
+canvas
+img
+svg
+video
+  vertical-align middle
+
+textarea
+  resize vertical
+
+/* Header */
+.page-head
+  clearfix()
+  position relative
+  background #fff
+  height 50px
+  border-bottom 1px solid $border-color
+  width 100%
+
+.site-logo
+  float left
+  margin 12px 10px 12px 0
+  user-select none
+  transition opacity .2s ease-out
+  &:hover
+    opacity .8
+
+.coinnext-logo
+  height 25px
+  width 146px
+  display block
+  image '/img/logo.png' auto 25px
+  background-repeat no-repeat
+
+.search-bar
+  float left
+  margin 12px 10px
+  input[type="text"]
+    height 25px
+    width 160px
+    padding 0 6px 0 23px
+    font-size 12px
+    &:focus
+      width 250px
+
+.search-bar-form
+  position relative
+
+.icon-search
+  position absolute
+  left 7px
+  top 7px
+  color $lightgray
+  font-size 12px
+  z-index 99
+
+.nav
+  reset-list()
+
+.site-nav
+.auth-nav
+  float right
+  .nav
+    clearfix()
+    &> li
+      float left
+      white-space nowrap
+    &> li > a
+      display block
+      height 49px
+      line-height 50px
+      border-left 1px solid #ecedef
+      border-right 1px solid #ecedef
+      margin-left -1px
+      font-weight 500
+      padding 0 20px
+      color $lightgray
+      font-size 12px
+      text-transform uppercase
+      position relative
+      &:hover
+        color $blue
+        text-decoration none
+      &:active
+      &.active
+        color #14294e
+
+.auth-nav
+  margin 0 5px
+  .nav
+    .btn
+      btn($teal)
+      height 25px
+      line-height 25px
+      margin 12px 5px
+      padding 0 20px
+      font-size 11px
+      &.white
+        btn(white)
+        padding 0 20px
+        font-size 11px
+        line-height 23px
+
+/* Index Page */
+.hero-unit
+  background $darkblue url("/img/hero/hero-bg.png") 100% 100%
+  border-top 1px solid darken($darkblue, 80%)
+  margin-top -11px
+  color $lightgray
+  text-align center
+  position relative
+  padding 40px 0
+  z-index 1
+  .tagline
+    color #fff
+    font-weight 700
+    font-family "Open Sans", helvetica, arial, sans-serif
+    letter-spacing .5px
+    margin 0 0 20px 0
+  .cta
+    btn($teal)
+    box-shadow inset 0 1px 0 rgba(#fff,.15)
+    font-size 16px
+    padding 17px 40px
+
+.footer-cta
+  clearfix()
+  background #fff
+  padding 15px
+  text-align center
+  position relative
+  border-top 1px solid $border-color
+  border-bottom 1px solid #ecedef
+  margin-bottom -1px
+  z-index 1
+  .tagline
+    margin 0
+    font-size 20px
+    font-family "Open Sans", helvetica, arial, sans-serif
+    font-weight 500
+    color $darkblue
+    display inline-block
+  .cta
+    btn($teal)
+    display inline-block
+    margin 0 0 0 20px
+    color #fff
+    box-shadow none
+    font-size 16px
+    padding 12px 18px
+    border-color rgba(#fff,.3)
+    &:hover
+      border-color #fff
+      color #fff
+
+#features
+  background #fff
+  margin-bottom 20px
+  border-bottom 1px solid $border-color
+  border-top 1px solid #fff
+
+.feature-list
+  reset-list()
+  clearfix()
+  width 1000px
+  margin 0 auto
+  .feature-item
+    float left
+    width 25%
+    height 125px
+    border-left 1px solid #ecedef
+    padding 20px
+    text-align center
+    &:first-child
+      border-left none
+
+.feature-img
+  height 60px
+
+.feature-text
+  padding-top 10px
+  text-transform uppercase
+  font-weight 700
+  color $darkblue
+
+/* Body */
+.main-content
+  clearfix()
+  background $bgcolor
+  padding 10px 0
+
+.content
+  @extends .container
+  margin-bottom 0
+  padding 30px
+
+hr
+  margin 10px 0
+  border 0
+  border-top 1px solid #ecedef
+
+/* 1 Col */
+.one-col
+  width 100%
+
+/* 2 Column */
+.col-aside
+  float left
+  width 250px
+.col-main
+  margin-left 260px
+
+@media only screen and (max-width: 768px)
+  .col-aside
+    float: none
+    width: 100%
+  .col-main
+    margin 10px 0 0 0
+
+/* 3 Column */
+.col-left
+  float left
+  width 200px
+.col-center
+  margin-left 210px
+  margin-right 310px
+.col-right
+  float right
+  width 300px
+
+/* Footer */
+.footer-body
+  background #fff
+  border-top 1px solid $border-color
+  clearfix()
+  .column
+    padding 20px
+    width 20%
+    max-width 500px
+    float left
+    &.logo
+      display none
+      float right
+      width 30%
+      .coinnext-logo
+        float right
+        image '/img/logo-gray.png' auto 25px
+        margin-bottom 20px
+      .copyright
+        clear both
+        text-align right
+        color $lightgray
+        max-width 500px
+    h2
+      text-transform uppercase
+      font-size 13px
+      color #484c57
+      font-weight 500
+      margin 0 0 7px 0
+    ul
+      reset-list()
+      li
+        a
+          padding 2px 0
+          color $lightgray
+          display block
+          &:hover
+            color $blue
+            text-decoration none
+    p
+      color $lightgray
+      font-size 13px
+      line-height 16px
+
+
+
+@media only screen and (min-width: 800px)
+  .footer-body .column.logo
+    display block
+
+.announcement-list
+  reset-list()
+.announcement-item
+  clearfix()
+  padding 6px 10px
+  .time
+  .title
+    float left
+  .time
+    margin-right 10px
+  &:nth-child(even)
+    background-color #f9f9f9
+
+.fees
+  th
+    width 200px
+
+@import 'auth'
+@import 'chat'
+@import 'trade'
+@import 'wallets'
+@import 'static'
+@import 'account'

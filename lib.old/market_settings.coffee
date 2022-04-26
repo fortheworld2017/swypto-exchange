@@ -1,0 +1,28 @@
+exports = module.exports =
+
+  CURRENCIES:
+    BTC: 1
+    XWBC: 2
+    USD: 3
+  AVAILABLE_MARKETS:
+    BTC_XWBC: 1
+    XWBC_USD: 2
+  CURRENCY_NAMES:
+    BTC: 'Bitcoin'
+    XWBC: 'LxcCoin'
+    USD: 'US Dollar'
+  WITHDRAWAL_FEES:
+    BTC: 20000
+    XWBC: 200000000
+
+  BANK_WITHDRAWAL_FEES:
+    USD: .25
+    Inter: .20
+  BANK_WITHDRAWAL_MINIMUM:
+    USD: 150
+    Inter: 150
+  BANK_WITHDRAWAL_FEE_MINIMUM:
+    USD: 20
+    Inter: 25
+
+  DEFAULT_WITHDRAWAL_FEE: 200000

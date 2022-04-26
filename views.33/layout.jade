@@ -1,0 +1,29 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+
+    title #{title ? title : 'Swypto - Cryptocurrency Exchange'}
+    
+    meta(name='description', content='Swypto is a cryptocurrency exchange where you can trade a wide range of coins fast and securely.')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
+
+    != css('main')
+    != css('custom')
+
+    include _config
+
+  body(class=(page === 'home' ? 'full-bg' : ''))
+    include site/_header
+    block content
+    include site/_footer
+
+    include templates/market_ticker
+    include templates/chat_message
+
+    != js('application')
+
+    - if (process.env.NODE_ENV === "production")
+      include _analytics
